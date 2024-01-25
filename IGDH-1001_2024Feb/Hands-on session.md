@@ -87,7 +87,10 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
 Divide into teams (either two or three teams). Each team should select one SRA run from the provided [google spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=941310028). Then, replicate the previously outlined steps to identify the top three prevalent species. Research one or two of these species using Google, and compare your findings with the samples to check for coherence. Each team will be given five minutes to showcase their findings. An example report can be found [here](https://github.com/shirleyxueli41/Tufts_workshops/blob/main/IGDH-1001_2024Feb/Exercise%203_Example%20Report.pdf).            
 *Warning: Ensure you generate a fresh history and assign a distinct name for the analysis.* 
 
-## Exercise 4 Taxonomy visualization.        
+## Exercise 4 Taxonomy visualization.      
+### Objectives:              
+The exercise aims to utilize Krona for creating interactive visualizations of taxonomic data, highlighting the tool's effectiveness in representing complex hierarchical structures. It also involves a comparison with NCBI Kroa, assessing differences in visualization techniques and data representation. 
+
 ### Instructions:
 1. Swith back to the session "Session 2 Metagenomics-ERR12302112".
 2.	**Krakentools: Convert kraken report file** to krona text file with the following parameters:                
