@@ -49,11 +49,60 @@ Utilize the SRA run ID to search the NCBI website. Explore the corresponding SRA
     a. **Mars Soil Sample Analysis**: If you obtained a soil sample from Mars for identifying microorganisms and assembling their genomes, which sequencing technology would be optimal? Consider factors like the detection of novel organisms and the precision required for genome assembly. Discuss your choice, focusing on read length, accuracy, and cost implications.         
     b. **Gut Microbiome Study**: In researching the impact of dietary changes on the gut microbiome, what type of sample would you collect, and which sequencing technology would be most suitable? Provide your rationale for this choice.         
 
-Additional Resources: Hints for these questions can be found here.        
+Additional Resources: Hints for these questions can be found [here](https://github.com/shirleyxueli41/Tufts_workshops/blob/main/IGDH-1001_2024Feb/Exercise%202_hints.pdf).        
 
 
-## Exercise 3
+## Exercise 3 Taxonomy assignment and interpretation.     
+### Objective:
+Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot. Interpretate and present the result. 
 
-![Screenshot 2024-01-25 at 12 15 43](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/2f08cced-598b-45a0-a363-b421bdc9a4d3)
+### Instructions:
+1. Log in to your [Galaxy account](https://galaxy.cluster.tufts.edu/).
+2. Name the history as "Session 2 Metagenomics-ERR12302112"
+3. Now let's start the analysis:
+    1. **Download and Extract Reads in FASTA/Q** format from NCBI SRA with the following parameters:       
+            * **Accession:** ERR12302112      
+![Screenshot 2024-01-25 at 16 09 58](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/9cafa3e2-78ad-4040-9e7f-a3baae378512)
+    2. **Kraken2** assign taxonomic labels to sequencing reads with the following parameters:       
+            * **Single or paired end**: Single      
+            * **Input Sequences**: the output from last step. Ex: 1.ERR12302112 (fastq-dump)        
+            * Click Create Report, then set **Print a report with aggregrate counts/clade to file** to Yes       
+            * **Select a Kraken2 database**: Minikraken2 v2
+      ![Screenshot 2024-01-25 at 16 17 44](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/26d7e312-a8a7-49c5-b3d5-39e9ce5893d9)                 
+   *Note this step will create two output files*      
+       <img width="296" alt="Screenshot 2024-01-25 at 16 21 42" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/492691e2-efe6-49da-9368-ab33c1312d21">
+
+    3. **Filter** data on any column using simple expressions with the following parameters:         
+            * **Filter**: the *report* output from last step. Ex: Report: Kraken2 on data 1        
+            * **With following condtion**: c4=="S"      
+             *This will keep the rows whose fourth column has a character S, S stands for species*      
+    4. **Sort** data in ascending or descending order with the following parameters:        
+            * **Sort Dataset**: the output file from filter. Ex: Filter on data 2       
+            * **with flavor**: Numerical sort       
+            * **everything in**: Descending order       
+    *Take a look at the output file, the first few lines should be like this*
+       
+       <img width="743" alt="Screenshot 2024-01-25 at 16 30 26" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/d284b4de-d6db-43fb-b14b-5c2452823902">        
+### In-class assignment:    
+Divide into teams (either two or three teams). Each team should select one SRA run from the provided [google spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=941310028). Then, replicate the previously outlined steps to identify the top three prevalent species. Research one or two of these species using Google, and compare your findings with the samples to check for coherence. Each team will be given five minutes to showcase their findings. An example report can be found here.            
+*Warming: Ensure you generate a fresh history and assign a distinct name for the analysis.* 
+
+## Exercise 4 Taxonomy visualization.        
+### Instructions:
+1. Swith back to the session "Session 2 Metagenomics-ERR12302112".
+2.	**Krakentools: Convert kraken report file** to krona text file with the following parameters:                
+     * **Kraken report file**: The *report* output from *Kraken2*. Ex: Report: Kraken2 on data1          
+       *This will generate an output called "Krakentools: Convert kraken report file on data 2"*        
+3.	**Visualize with Krona** Visualize any hierarchical data with the following parameters:
+     * **Select input file:** Krakentools: Convert kraken report file on data 2
+       *This will generate an output called "Krona on data 5: HTML"*        
+       <img width="885" alt="Screenshot 2024-01-25 at 16 42 45" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/8e1bd1c1-5708-47f7-9e0b-2ba4ac8f7559">           
+4.	Compare the Krona plot with it on NCBI SRA. Link is [here](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=ERR12302112&display=analysis).   
+     * Click Show Krona View       
+*NCBI uses Sequence Taxonomic Analysis Tool ([STAT](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)), a scalable k-mer-based tool for fast assessment of taxonomic diversity intrinsic to submissions, independent of metadata. *
+
+
+
 
 # Reference
+https://bisonnet.bucknell.edu/files/2021/05/Kraken2-Help-Sheet.pdf
