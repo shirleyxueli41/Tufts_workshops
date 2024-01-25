@@ -97,7 +97,7 @@ The exercise aims to utilize Krona for creating interactive visualizations of ta
      * **Kraken report file**: The *report* output from *Kraken2*. Ex: Report: Kraken2 on data1          
        *This will generate an output called "Krakentools: Convert kraken report file on data 2"*        
 3.	**Visualize with Krona** Visualize any hierarchical data with the following parameters:
-     * **Select input file:** Krakentools: Convert kraken report file on data 2
+     * **Select input file:** Krakentools: Convert kraken report file on data 2.                 
        *This will generate an output called "Krona on data 5: HTML"*        
        <img width="885" alt="Screenshot 2024-01-25 at 16 42 45" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/8e1bd1c1-5708-47f7-9e0b-2ba4ac8f7559">           
 4.	Compare the Krona plot with it on NCBI SRA. Link is [here](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=ERR12302112&display=analysis).   
