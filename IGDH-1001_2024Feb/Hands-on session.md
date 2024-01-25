@@ -16,6 +16,7 @@ https://www.ncbi.nlm.nih.gov/bioproject
 
 ![Screenshot 2024-01-25 at 13 07 01](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304 width="20" height="10")
 
+<img src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304" width="20" height="10">
 ## Exercise 2
 
 ## Exercise 3
