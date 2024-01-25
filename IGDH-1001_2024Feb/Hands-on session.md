@@ -83,8 +83,10 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
             * **everything in**: Descending order       
     *Take a look at the output file, the first few lines should be like this*
        
-       <img width="743" alt="Screenshot 2024-01-25 at 16 30 26" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/d284b4de-d6db-43fb-b14b-5c2452823902">
-
+       <img width="743" alt="Screenshot 2024-01-25 at 16 30 26" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/d284b4de-d6db-43fb-b14b-5c2452823902">        
+### In-class assignment:    
+Divide into teams (either two or three teams). Each team should select one SRA run from the provided [google spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=941310028 ![image](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/613baa06-15ef-4707-950f-927a740ec383)
+). Then, replicate the previously outlined steps to identify the top three prevalent species. Research one or two of these species using Google, and compare your findings with the samples to check for coherence. Each team will be given five minutes to showcase their findings. An example report can be found here.    
 
 # Reference
 https://bisonnet.bucknell.edu/files/2021/05/Kraken2-Help-Sheet.pdf
