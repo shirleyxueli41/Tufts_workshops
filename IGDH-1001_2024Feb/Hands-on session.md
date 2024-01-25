@@ -21,7 +21,7 @@ In this section, you will learn to navigate the [NCBI database](https://www.ncbi
 ### Instructions:
 You will navigate through NCBI database to find the below information. 
 
-1. Check the Paper [Evaluation of full-length nanopore 16S sequencing for detection of pathogens in microbial keratitis](https://peerj.com/articles/10778/) and locate the bioproject ID from the text in paper.
+1. Check the Paper ["Evaluation of full-length nanopore 16S sequencing for detection of pathogens in microbial keratitis"](https://peerj.com/articles/10778/) and locate the bioproject ID from the text in paper.
     * Clue: Bioproject ID is [PRJEB37709](https://www.ncbi.nlm.nih.gov/bioproject/PRJEB37709/) below section "Data Availability"        
 2. Find the answers for the following questions. Write down the answer on a piece or paper or using a text editor/notebook on your laptop or phone.        
     1. What is the link for this BioProject?             
