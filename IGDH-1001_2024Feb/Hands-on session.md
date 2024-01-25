@@ -19,15 +19,15 @@ In this section, you will learn to navigate the [NCBI database](https://www.ncbi
    <em>A screenshot of NCBI website</em>       
    
 ### Instructions:
-You will navigate through NCBI database to find the below information. 
+Your task involves exploring the NCBI database to gather specific information:
 
-1. Check the Paper ["Evaluation of full-length nanopore 16S sequencing for detection of pathogens in microbial keratitis"](https://peerj.com/articles/10778/) and locate the bioproject ID from the text in paper.
-    * Clue: Bioproject ID is [PRJEB37709](https://www.ncbi.nlm.nih.gov/bioproject/PRJEB37709/) below section "Data Availability"        
-2. Find the answers for the following questions. Write down the answer on a piece or paper or using a text editor/notebook on your laptop or phone.        
-    1. What is the link for this BioProject?             
-    2. How many samples are there in this BioProject?
-    3. How many SRA runs are there in this BioProject?        
-    4. What is the sequencing platform for SRA run [ERR4836970](https://www.ncbi.nlm.nih.gov/sra/?term=ERR4836970)
+1. Check the research paper ["Evaluation of full-length nanopore 16S sequencing for detection of pathogens in microbial keratitis"](https://peerj.com/articles/10778/) . Your goal is to identify the associated BioProject ID within the paper.
+    * Hint: Bioproject ID is [PRJEB37709](https://www.ncbi.nlm.nih.gov/bioproject/PRJEB37709/) in the "Data Availability" section of the paper.        
+2. Answer the following queries regarding the BioProject, and keep a record of your findings:    
+    a. What is the URL for this specific BioProject?
+    b. Total number of samples included in this BioProject.
+    c. Count of SRA runs associated with this BioProject.
+    d. Determine the sequencing platform used for SRA run [ERR4836970](https://www.ncbi.nlm.nih.gov/sra/?term=ERR4836970).    
 3. Repeat step 3 for the second paper:
    
 
