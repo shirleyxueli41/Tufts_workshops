@@ -22,6 +22,7 @@ You will navigate through NCBI database to find the below information.
 https://peerj.com/articles/10778/ 
 
   <li>2. Clue: Bioproject ID is PRJEB37709 below section "Data Availability"</li>      
+<ul>
 _3. Find the answers for the following questions. Write down the answer on a piece or paper or using a text editor/notebook on your laptop or phone.
 __1. What is the link for this BioProject?
 __2. How many samples are there in this BioProject?
