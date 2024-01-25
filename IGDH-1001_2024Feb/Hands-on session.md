@@ -102,7 +102,7 @@ The exercise aims to utilize Krona for creating interactive visualizations of ta
        <img width="885" alt="Screenshot 2024-01-25 at 16 42 45" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/8e1bd1c1-5708-47f7-9e0b-2ba4ac8f7559">           
 4.	Compare the Krona plot with it on NCBI SRA. Link is [here](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=ERR12302112&display=analysis).   
      * Click Show Krona View       
-*NCBI uses Sequence Taxonomic Analysis Tool ([STAT](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)), a scalable k-mer-based tool for fast assessment of taxonomic diversity intrinsic to submissions, independent of metadata. *
+*NCBI uses Sequence Taxonomic Analysis Tool ([STAT](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)), a scalable k-mer-based tool for fast assessment of taxonomic diversity intrinsic to submissions, independent of metadata.*
 
 
 
