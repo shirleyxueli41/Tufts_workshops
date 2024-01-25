@@ -15,6 +15,7 @@ Canvas link: https://canvas.tufts.edu/courses/55751/files/folder/IDGH_1001_Bioin
 In this section, you will learn to navigate the [NCBI database](https://www.ncbi.nlm.nih.gov/bioproject). Known for its comprehensive nature, the database hosts a variety of sections, each tailored to specific types of datasets. Your focus will be on mastering the ability to identify and navigate through BioProject pages, SRA experiment pages, and SRA Runs linked to published research papers. This proficiency is crucial in the field of bioinformatics, enabling us to effectively leverage previous research as a foundation for new discoveries and advancements in the study of biological data.
 
 <img src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304" width="900" height="300">          
+
    <em>A screenshot of NCBI website</em>       
    
 ### Instructions:
@@ -43,6 +44,7 @@ Utilize the provided SRA run ID to search the NCBI website. Explore the correspo
 <img src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/de1556b2-f038-451a-b4dc-a4f3d324aeae" width="900" height="300">   
 
 <em>A screenshot of the spreadsheet</em>                 
+
 2. Questions for Analysis         
     a. Mars Soil Sample Analysis: If you obtained a soil sample from Mars for identifying microorganisms and assembling their genomes, which sequencing technology would be optimal? Consider factors like the detection of novel organisms and the precision required for genome assembly. Discuss your choice, focusing on read length, accuracy, and cost implications.         
     b. Gut Microbiome Study: In researching the impact of dietary changes on the gut microbiome, what type of sample would you collect, and which sequencing technology would be most suitable? Provide your rationale for this choice.         
