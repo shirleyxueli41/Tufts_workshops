@@ -33,7 +33,14 @@ Your task involves exploring the NCBI database to gather specific information:
    
 
 
-## Exercise 2
+## Exercise 2        
+### Objective:
+Engage in a hands-on exercise to explore the NCBI database using specific SRA run IDs. Your task will involve navigating various sections of the database and applying your understanding of sequencing technologies to hypothetical research scenarios.   
+
+### Instructions:
+1. Utilize the provided SRA run ID to search the NCBI website. Explore the corresponding SRA, BioSample, and BioProject sections related to this SRA run.            
+2. Assignment Completion: Choose one SRA run and document your findings in the provided Google Spreadsheet: [Exercise Spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=927665114).
+
 
 ## Exercise 3
 
