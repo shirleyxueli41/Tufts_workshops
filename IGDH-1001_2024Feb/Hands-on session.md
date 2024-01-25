@@ -23,11 +23,11 @@ Your task involves exploring the NCBI database to gather specific information:
 
 1. Check the research paper ["Evaluation of full-length nanopore 16S sequencing for detection of pathogens in microbial keratitis"](https://peerj.com/articles/10778/) . Your goal is to identify the associated BioProject ID within the paper.
     * Hint: Bioproject ID is [PRJEB37709](https://www.ncbi.nlm.nih.gov/bioproject/PRJEB37709/) in the "Data Availability" section of the paper.        
-2. Answer the following queries regarding the BioProject, and keep a record of your findings:    
-    a. What is the URL for this specific BioProject?
-    b. Total number of samples included in this BioProject.
-    c. Count of SRA runs associated with this BioProject.
-    d. Determine the sequencing platform used for SRA run [ERR4836970](https://www.ncbi.nlm.nih.gov/sra/?term=ERR4836970).    
+2. Answer the following queries regarding the BioProject, and keep a record of your findings:           
+    a. What is the URL for this specific BioProject?        
+    b. Total number of samples included in this BioProject.        
+    c. Count of SRA runs associated with this BioProject.          
+    d. Determine the sequencing platform used for SRA run [ERR4836970](https://www.ncbi.nlm.nih.gov/sra/?term=ERR4836970).          
 3. Repeat step 3 for the second paper:
    
 
