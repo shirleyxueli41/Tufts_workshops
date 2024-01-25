@@ -61,18 +61,17 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
 1. Log in to your [Galaxy account](https://galaxy.cluster.tufts.edu/).
 2. Name the history as "Session 2 Metagenomics-ERR12302112"
 3. Now let's start the analysis:
-    1. **Download and Extract Reads in FASTA/Q** format from NCBI SRA with the following parameters:
-            * **Accession:** ERR12302112
+    1. **Download and Extract Reads in FASTA/Q** format from NCBI SRA with the following parameters:       
+            * **Accession:** ERR12302112      
 ![Screenshot 2024-01-25 at 16 09 58](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/9cafa3e2-78ad-4040-9e7f-a3baae378512)
-    2. **Kraken2** assign taxonomic labels to sequencing reads with the following parameters:
-            * **Single or paired end**: Single
-            * **Input Sequences**: the output from last step.
-            * Click Create Report, then set **Print a report with aggregrate counts/clade to file** to Yes
-            * **Select a Kraken2 database**: Minikraken2 v2![image](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/98430983-04ea-4f79-ab3e-4ab052650f78)
+    2. **Kraken2** assign taxonomic labels to sequencing reads with the following parameters:       
+            * **Single or paired end**: Single      
+            * **Input Sequences**: the output from last step.     
+            * Click Create Report, then set **Print a report with aggregrate counts/clade to file** to Yes       
+            * **Select a Kraken2 database**: Minikraken2 v2
+      ![Screenshot 2024-01-25 at 16 17 44](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/26d7e312-a8a7-49c5-b3d5-39e9ce5893d9)
 
    
-
-![Screenshot 2024-01-25 at 12 15 43](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/2f08cced-598b-45a0-a363-b421bdc9a4d3)
 
 # Reference
 https://bisonnet.bucknell.edu/files/2021/05/Kraken2-Help-Sheet.pdf
