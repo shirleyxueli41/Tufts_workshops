@@ -108,8 +108,8 @@ The exercise aims to utilize Krona for creating interactive visualizations of ta
 
 
 # Reference
-https://bisonnet.bucknell.edu/files/2021/05/Kraken2-Help-Sheet.pdf
-https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00900-2
-https://jddtonline.info/index.php/jddt/article/view/5433
-https://www.sciencedirect.com/science/article/pii/S094450132200194X?via%3Dihub
+https://bisonnet.bucknell.edu/files/2021/05/Kraken2-Help-Sheet.pdf    
+https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00900-2    
+https://jddtonline.info/index.php/jddt/article/view/5433    
+https://www.sciencedirect.com/science/article/pii/S094450132200194X?via%3Dihub   
 
