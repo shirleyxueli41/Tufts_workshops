@@ -6,7 +6,7 @@ Canvas link: https://canvas.tufts.edu/courses/55751/files/folder/IDGH_1001_Bioin
 ## Learning Objective
 1.	NCBI Database Proficiency: Develop skills to efficiently locate and interpret data on the [NCBI database](https://www.ncbi.nlm.nih.gov/), including navigating to specific BioProject and SRA experiment pages.
 2.	Data Retrieval from Published Papers: Gain the ability to identify and extract relevant raw data and metadata from published scientific papers.
-3.	Metagenomic Sequencing Platforms: Learn about different sequencing platforms by analyzing their data characteristics, specifically focusing on Illumina and Nanopore technologies.
+3.	Metagenomic Sequencing Platforms: Learn about different sequencing platforms by analyzing their data characteristics, specifically focusing on [Illumina](https://www.sciencedirect.com/science/article/pii/S0198885921000628) and [Nanopore technologies](https://www.nature.com/articles/nbt.3423).
 4.	Taxonomic Analysis: Acquire practical experience in assigning taxonomic labels to sequencing reads using Kraken2 on [Tufts Galaxy](https://galaxy.cluster.tufts.edu/), and in converting and visualizing these labels with Krona.
 5.	Data Comparison and Interpretation: Enhance skills in comparing visualized data with NCBI SRA information and drawing conclusions about sample composition.
 
