@@ -1,6 +1,6 @@
 Date: Feb 6, 2024   
 Author: Shirley Li, xue.li37@tufts.edu     
-Class ID: IGDH-1001    
+Class ID: Sp24-IDGH-1001-1-Bioinformatics    
 Canvas link: https://canvas.tufts.edu/courses/55751/files/folder/IDGH_1001_Bioinformatics_2024 
 # Introduction to Metagenomics - Session 2
 ## Learning Objective
