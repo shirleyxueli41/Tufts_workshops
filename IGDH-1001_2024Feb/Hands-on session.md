@@ -46,8 +46,8 @@ Utilize the provided SRA run ID to search the NCBI website. Explore the correspo
 <em>A screenshot of the spreadsheet</em>                 
 
 2. Questions for Analysis         
-    a. Mars Soil Sample Analysis: If you obtained a soil sample from Mars for identifying microorganisms and assembling their genomes, which sequencing technology would be optimal? Consider factors like the detection of novel organisms and the precision required for genome assembly. Discuss your choice, focusing on read length, accuracy, and cost implications.         
-    b. Gut Microbiome Study: In researching the impact of dietary changes on the gut microbiome, what type of sample would you collect, and which sequencing technology would be most suitable? Provide your rationale for this choice.         
+    a. **Mars Soil Sample Analysis**: If you obtained a soil sample from Mars for identifying microorganisms and assembling their genomes, which sequencing technology would be optimal? Consider factors like the detection of novel organisms and the precision required for genome assembly. Discuss your choice, focusing on read length, accuracy, and cost implications.         
+    b. **Gut Microbiome Study**: In researching the impact of dietary changes on the gut microbiome, what type of sample would you collect, and which sequencing technology would be most suitable? Provide your rationale for this choice.         
 
 Additional Resources: Hints for these questions can be found here.        
 
