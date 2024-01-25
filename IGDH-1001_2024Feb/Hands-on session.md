@@ -15,6 +15,19 @@ In this section, you will learn to navigate the NCBI database. This database is 
 This is a very important skill for bioinformatics, as we build on the work of others....        
 https://www.ncbi.nlm.nih.gov/bioproject  
 <img src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304" width="900" height="300">    
+### Instructions:
+You will navigate through NCBI database to find the below information. 
+_1. Check this Paper and locate the bioproject ID from the text in the paper: 
+https://peerj.com/articles/10778/ 
+
+_2. Clue: Bioproject ID is PRJEB37709 below section "Data Availability"
+_3. Find the answers for the following questions. Write down the answer on a piece or paper or using a text editor/notebook on your laptop or phone.
+__1. What is the link for this BioProject?
+__2. How many samples are there in this BioProject?
+__3. How many SRA runs are there in this BioProject?
+__4. What is the sequencing platform for SRA run [ERR4836970](https://www.ncbi.nlm.nih.gov/sra/?term=ERR4836970)
+
+
 
 ## Exercise 2
 
