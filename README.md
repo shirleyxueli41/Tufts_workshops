@@ -1,6 +1,5 @@
 Date: Feb 6, 2024   
-Author: Shirley Li, xue.li37@tufts.edu  
-
+Author: Shirley Li, xue.li37@tufts.edu     
 # Introduction to Metagenomics - Session 2
 
 
