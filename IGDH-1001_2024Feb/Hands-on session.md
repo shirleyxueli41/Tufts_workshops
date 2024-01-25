@@ -52,11 +52,10 @@ Utilize the SRA run ID to search the NCBI website. Explore the corresponding SRA
 Additional Resources: Hints for these questions can be found [here](https://github.com/shirleyxueli41/Tufts_workshops/blob/main/IGDH-1001_2024Feb/Exercise%202_hints.pdf).        
 
 
-## Exercise 3      
+## Exercise 3 Taxonomy assignment and interpretation.     
 ### Objective:
 Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot. Interpretate and present the result. 
 
-### Exercise 3A: Taxonomy assignment and interpretation.
 ### Instructions:
 1. Log in to your [Galaxy account](https://galaxy.cluster.tufts.edu/).
 2. Name the history as "Session 2 Metagenomics-ERR12302112"
@@ -85,7 +84,25 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
        
        <img width="743" alt="Screenshot 2024-01-25 at 16 30 26" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/d284b4de-d6db-43fb-b14b-5c2452823902">        
 ### In-class assignment:    
-Divide into teams (either two or three teams). Each team should select one SRA run from the provided [google spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=941310028). Then, replicate the previously outlined steps to identify the top three prevalent species. Research one or two of these species using Google, and compare your findings with the samples to check for coherence. Each team will be given five minutes to showcase their findings. An example report can be found here.    
+Divide into teams (either two or three teams). Each team should select one SRA run from the provided [google spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=941310028). Then, replicate the previously outlined steps to identify the top three prevalent species. Research one or two of these species using Google, and compare your findings with the samples to check for coherence. Each team will be given five minutes to showcase their findings. An example report can be found here.            
+*Warming: Ensure you generate a fresh history and assign a distinct name for the analysis.* 
+
+## Exercise 4 Taxonomy visualization.        
+### Instructions:
+1. Swith back to the session "Session 2 Metagenomics-ERR12302112".
+2.	**Krakentools: Convert kraken report file** to krona text file with the following parameters:                
+     * **Kraken report file**: The *report* output from *Kraken2*. Ex: Report: Kraken2 on data1          
+       *This will generate an output called "Krakentools: Convert kraken report file on data 2"*        
+3.	**Visualize with Krona** Visualize any hierarchical data with the following parameters:
+     * **Select input file:** Krakentools: Convert kraken report file on data 2
+       *This will generate an output called "Krona on data 5: HTML"*        
+       <img width="885" alt="Screenshot 2024-01-25 at 16 42 45" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/8e1bd1c1-5708-47f7-9e0b-2ba4ac8f7559">           
+4.	Compare the Krona plot with it on NCBI SRA. Link is [here](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=ERR12302112&display=analysis).   
+     * Click Show Krona View       
+*NCBI uses Sequence Taxonomic Analysis Tool ([STAT](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)), a scalable k-mer-based tool for fast assessment of taxonomic diversity intrinsic to submissions, independent of metadata. *
+
+
+
 
 # Reference
 https://bisonnet.bucknell.edu/files/2021/05/Kraken2-Help-Sheet.pdf
