@@ -41,6 +41,10 @@ Engage in a hands-on exercise to explore the NCBI database using specific SRA ru
 1. Utilize the provided SRA run ID to search the NCBI website. Explore the corresponding SRA, BioSample, and BioProject sections related to this SRA run.            
 2. Assignment Completion: Choose one SRA run and document your findings in the provided Google Spreadsheet: [Exercise Spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=927665114).
 
+![Screenshot 2024-01-25 at 14 02 47](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/de1556b2-f038-451a-b4dc-a4f3d324aeae)
+
+<em>A screenshot of the spreadsheet</em>
+
 
 ## Exercise 3
 
