@@ -1,6 +1,7 @@
 Date: Feb 6, 2024   
 Author: Shirley Li, xue.li37@tufts.edu     
-Class ID: IGDH-1001      
+Class ID: IGDH-1001    
+Canvas link: https://canvas.tufts.edu/courses/55751/files/folder/IDGH_1001_Bioinformatics_2024 
 # Introduction to Metagenomics - Session 2
 ## Learning Objective
 1.	NCBI Database Proficiency: Develop skills to efficiently locate and interpret data on the NCBI database, including navigating to specific BioProject and SRA experiment pages.
