@@ -42,7 +42,7 @@ Engage in a hands-on exercise to explore the NCBI database using specific SRA ru
 2. Assignment Completion: Choose one SRA run and document your findings in the provided Google Spreadsheet: [Exercise Spreadsheet](https://docs.google.com/spreadsheets/d/1s_NVSPLABQtTmB-EXwY4gmNOzGJxr2RE7WVnbFz6djw/edit#gid=927665114).
 
 ![Screenshot 2024-01-25 at 14 02 47](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/de1556b2-f038-451a-b4dc-a4f3d324aeae)
-
+<img src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304" width="900" height="300">          
 <em>A screenshot of the spreadsheet</em>
 
 
