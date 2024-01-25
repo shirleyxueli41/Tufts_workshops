@@ -18,10 +18,10 @@ https://www.ncbi.nlm.nih.gov/bioproject
 ### Instructions:
 You will navigate through NCBI database to find the below information. 
 <ul>
-  <li>1. Check this Paper and locate the bioproject ID from the text in the paper: 
+  <li>1. Check this Paper and locate the bioproject ID from the text in the paper: </li>
 https://peerj.com/articles/10778/ 
 
-  <li>2. Clue: Bioproject ID is PRJEB37709 below section "Data Availability"      
+  <li>2. Clue: Bioproject ID is PRJEB37709 below section "Data Availability"</li>      
 _3. Find the answers for the following questions. Write down the answer on a piece or paper or using a text editor/notebook on your laptop or phone.
 __1. What is the link for this BioProject?
 __2. How many samples are there in this BioProject?
