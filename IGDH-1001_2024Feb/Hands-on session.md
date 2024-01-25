@@ -14,7 +14,7 @@ In this section, you will learn to navigate the NCBI database. This database is 
 This is a very important skill for bioinformatics, as we build on the work of others....
 https://www.ncbi.nlm.nih.gov/bioproject 
 
-![Screenshot 2024-01-25 at 13 07 01](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304 =300x250)
+![Screenshot 2024-01-25 at 13 07 01](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304 width="20" height="10")
 
 ## Exercise 2
 
