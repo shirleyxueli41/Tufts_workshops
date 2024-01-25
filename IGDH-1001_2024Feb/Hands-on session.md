@@ -70,8 +70,8 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
             * Click Create Report, then set **Print a report with aggregrate counts/clade to file** to Yes       
             * **Select a Kraken2 database**: Minikraken2 v2
       ![Screenshot 2024-01-25 at 16 17 44](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/26d7e312-a8a7-49c5-b3d5-39e9ce5893d9)                 
-    *Note this step will create two output files*      
-    <img width="296" alt="Screenshot 2024-01-25 at 16 21 42" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/492691e2-efe6-49da-9368-ab33c1312d21">
+   *Note this step will create two output files*      
+       <img width="296" alt="Screenshot 2024-01-25 at 16 21 42" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/492691e2-efe6-49da-9368-ab33c1312d21">
 
 
 # Reference
