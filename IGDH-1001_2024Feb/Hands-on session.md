@@ -49,11 +49,30 @@ Utilize the SRA run ID to search the NCBI website. Explore the corresponding SRA
     a. **Mars Soil Sample Analysis**: If you obtained a soil sample from Mars for identifying microorganisms and assembling their genomes, which sequencing technology would be optimal? Consider factors like the detection of novel organisms and the precision required for genome assembly. Discuss your choice, focusing on read length, accuracy, and cost implications.         
     b. **Gut Microbiome Study**: In researching the impact of dietary changes on the gut microbiome, what type of sample would you collect, and which sequencing technology would be most suitable? Provide your rationale for this choice.         
 
-Additional Resources: Hints for these questions can be found here.        
+Additional Resources: Hints for these questions can be found [here](https://github.com/shirleyxueli41/Tufts_workshops/blob/main/IGDH-1001_2024Feb/Exercise%202_hints.pdf).        
 
 
-## Exercise 3
+## Exercise 3      
+### Objective:
+Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot. Interpretate and present the result. 
+
+### Exercise 3A: Taxonomy assignment and interpretation.
+### Instructions:
+1. Log in to your [Galaxy account](https://galaxy.cluster.tufts.edu/).
+2. Name the history as "Session 2 Metagenomics-ERR12302112"
+3. Now let's start the analysis:
+    1. **Download and Extract Reads in FASTA/Q** format from NCBI SRA with the following parameters:
+            * **Accession:** ERR12302112
+![Screenshot 2024-01-25 at 16 09 58](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/9cafa3e2-78ad-4040-9e7f-a3baae378512)
+    2. **Kraken2** assign taxonomic labels to sequencing reads with the following parameters:
+            * **Single or paired end**: Single
+            * **Input Sequences**: the output from last step.
+            * Click Create Report, then set **Print a report with aggregrate counts/clade to file** to Yes
+            * **Select a Kraken2 database**: Minikraken2 v2![image](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/98430983-04ea-4f79-ab3e-4ab052650f78)
+
+   
 
 ![Screenshot 2024-01-25 at 12 15 43](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/2f08cced-598b-45a0-a363-b421bdc9a4d3)
 
 # Reference
+https://bisonnet.bucknell.edu/files/2021/05/Kraken2-Help-Sheet.pdf
