@@ -78,17 +78,13 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
        <img width="296" alt="Screenshot 2024-01-25 at 16 21 42" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/492691e2-efe6-49da-9368-ab33c1312d21">
 
     3. **Filter** data on any column using simple expressions with the following parameters:       
-    
             * **Filter**: the *report* output from last step. Ex: Report: Kraken2 on data 1        
             * **With following condtion**: c4=="S"       
-            
              *This will keep the rows whose fourth column has a character S, S stands for species*      
     4. **Sort** data in ascending or descending order with the following parameters:         
-            
             * **Sort Dataset**: the output file from filter. Ex: Filter on data 2       
             * **with flavor**: Numerical sort       
-            * **everything in**: Descending order                 
-                     
+            * **everything in**: Descending order                  
     *Take a look at the output file, the first few lines should be like this:*
        
        <img width="743" alt="Screenshot 2024-01-25 at 16 30 26" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/d284b4de-d6db-43fb-b14b-5c2452823902">        
