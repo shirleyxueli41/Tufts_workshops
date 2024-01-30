@@ -58,12 +58,13 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
 
 ### Instructions:
 1. Log in to your [Galaxy account](https://galaxy.cluster.tufts.edu/).
-2. Name the history as "Session 2 Metagenomics-ERR12302112"
+2. Name the history as "Session 2 Metagenomics-ERR12302112" by double clicking the "Unnamed history".
 3. Now let's start the analysis:
-    1. **Download and Extract Reads in FASTA/Q** format from NCBI SRA with the following parameters:       
-            * **Accession:** ERR12302112      
+    1. Under tools on the far left of the page, search for **Download and Extract Reads in FASTA/Q** format from NCBI SRA, run the tool with the following parameters:       
+            * **Accession:** ERR12302112
+            * Click **Execute** 
 ![Screenshot 2024-01-25 at 16 09 58](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/9cafa3e2-78ad-4040-9e7f-a3baae378512)
-    2. **Kraken2** assign taxonomic labels to sequencing reads with the following parameters:       
+    3. **Kraken2** assign taxonomic labels to sequencing reads with the following parameters:       
             * **Single or paired end**: Single      
             * **Input Sequences**: the output from last step. Ex: 1.ERR12302112 (fastq-dump)        
             * Click Create Report, then set **Print a report with aggregrate counts/clade to file** to Yes       
@@ -72,11 +73,11 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
    *Note this step will create two output files*      
        <img width="296" alt="Screenshot 2024-01-25 at 16 21 42" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/492691e2-efe6-49da-9368-ab33c1312d21">
 
-    3. **Filter** data on any column using simple expressions with the following parameters:         
+    4. **Filter** data on any column using simple expressions with the following parameters:         
             * **Filter**: the *report* output from last step. Ex: Report: Kraken2 on data 1        
             * **With following condtion**: c4=="S"      
              *This will keep the rows whose fourth column has a character S, S stands for species*      
-    4. **Sort** data in ascending or descending order with the following parameters:        
+    5. **Sort** data in ascending or descending order with the following parameters:        
             * **Sort Dataset**: the output file from filter. Ex: Filter on data 2       
             * **with flavor**: Numerical sort       
             * **everything in**: Descending order       
