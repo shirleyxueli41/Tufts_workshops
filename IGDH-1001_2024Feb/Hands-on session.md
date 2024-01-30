@@ -59,7 +59,12 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
 ### Instructions:
 1. Log in to your [Galaxy account](https://galaxy.cluster.tufts.edu/).
 2. Name the history as "Session 2 Metagenomics-ERR12302112" by double clicking the "Unnamed history".
-3. Now let's start the analysis:                 
+3. Now let's start the analysis:         
+> The tools we will use for this analysis are:     
+> Download and Extract Reads in FASTA/Q    
+> Kraken2
+> filter
+> sort                          
     1. Under tools on the far left of the page, search for **Download and Extract Reads in FASTA/Q** format from NCBI SRA, run the tool with the following parameters:                
             - **Accession:** ERR12302112                
             - Click **Execute**         
