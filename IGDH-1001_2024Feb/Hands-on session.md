@@ -94,7 +94,7 @@ Divide into teams (either two or three teams). Each team should select one SRA r
 The exercise aims to utilize Krona for creating interactive visualizations of taxonomic data, highlighting the tool's effectiveness in representing complex hierarchical structures. It also involves a comparison with NCBI Kroa, assessing differences in visualization techniques and data representation. 
 
 ### Instructions:
-1. Swith back to the session "Session 2 Metagenomics-ERR12302112".
+1. Switch back to the session "Session 2 Metagenomics-ERR12302112".
 2.	**Krakentools: Convert kraken report file** to krona text file with the following parameters:                
      * **Kraken report file**: The *report* output from *Kraken2*. Ex: Report: Kraken2 on data1          
        *This will generate an output called "Krakentools: Convert kraken report file on data 2"*        
