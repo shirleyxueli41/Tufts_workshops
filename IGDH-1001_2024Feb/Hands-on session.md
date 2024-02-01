@@ -10,8 +10,8 @@ Canvas link: https://canvas.tufts.edu/courses/55751/files/folder/IDGH_1001_Bioin
 4.	Taxonomic Analysis: Acquire practical experience in assigning taxonomic labels to sequencing reads using Kraken2 on [Tufts Galaxy](https://galaxy.cluster.tufts.edu/), and in converting and visualizing these labels with Krona.
 5.	Data Comparison and Interpretation: Enhance skills in comparing visualized data with NCBI SRA information and drawing conclusions about sample composition.
 
-## Exercise 1
-### Objecttive: 
+## Exercise 1: NCBI Database Navigation
+### Objective: 
 In this section, you will learn to navigate the [NCBI database](https://www.ncbi.nlm.nih.gov/bioproject). Known for its comprehensive nature, the database hosts a variety of sections, each tailored to specific types of datasets. Your focus will be on mastering the ability to identify and navigate through BioProject pages, SRA experiment pages, and SRA Runs linked to published research papers. This proficiency is crucial in the field of bioinformatics, enabling us to effectively leverage previous research as a foundation for new discoveries and advancements in the study of biological data.
 
 <img src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/32383594-b895-4f0b-9107-882313c69304" width="900" height="300">          
@@ -21,7 +21,7 @@ In this section, you will learn to navigate the [NCBI database](https://www.ncbi
 ### Instructions:
 Your task involves exploring the NCBI database to gather specific information:
 
-1. Check the research paper ["Evaluation of full-length nanopore 16S sequencing for detection of pathogens in microbial keratitis"](https://peerj.com/articles/10778/) . Your goal is to identify the associated BioProject ID within the paper.
+1. Review the research paper ["Evaluation of full-length nanopore 16S sequencing for detection of pathogens in microbial keratitis"](https://peerj.com/articles/10778/) . Your goal is to identify the associated BioProject ID within the paper.
     * Hint: BioProject ID is [PRJEB37709](https://www.ncbi.nlm.nih.gov/bioproject/PRJEB37709/) in the "Data Availability" section of the paper.        
 2. Answer the following queries regarding the BioProject, and keep a record of your findings:           
     a. What is the URL for this specific BioProject?        
@@ -33,7 +33,7 @@ Your task involves exploring the NCBI database to gather specific information:
    
 
 
-## Exercise 2        
+## Exercise 2: NCBI Database Exploration    
 ### Objective:
 Engage in a hands-on exercise to explore the NCBI database using specific SRA run IDs. Your task will involve navigating various sections of the database and applying your understanding of sequencing technologies to hypothetical research scenarios.   
 
@@ -81,7 +81,7 @@ Use Kraken2 for taxonomy assignment and visualize the results with a Krona plot.
 
     3. **Filter** data on any column using simple expressions with the following parameters:       
             - **Filter**: the *report* output from last step. Ex: Report: Kraken2 on data 1        
-            - **With following condtion**: c4=="S"       
+            - **With following condition**: c4=="S"       
              *This will keep the rows whose fourth column has a character S, S stands for species*      
     4. **Sort** data in ascending or descending order with the following parameters:         
             - **Sort Dataset**: the output file from filter. Ex: Filter on data 2       
