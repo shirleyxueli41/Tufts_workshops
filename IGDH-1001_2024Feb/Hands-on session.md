@@ -28,7 +28,7 @@ Your task involves exploring the NCBI database to gather specific information:
     b. Total number of samples included in this BioProject.        
     c. Count of SRA runs associated with this BioProject.          
     d. Determine the sequencing platform used for SRA run [ERR4836970](https://www.ncbi.nlm.nih.gov/sra/?term=ERR4836970).          
-3. Apply the same procedure as step 2 for a second research paper: ["Apply the same procedure as step 2 for a second research paper"](https://www.nature.com/articles/s41597-022-01762-z).
+3. Apply the same procedure as step 2 for a second research paper: ["Benchmarking second and third-generation sequencing platforms for microbial metagenomics"](https://www.nature.com/articles/s41597-022-01762-z).
     * Hint: BioProject ID is in the "Data Records" section of the paper. 
    
 
