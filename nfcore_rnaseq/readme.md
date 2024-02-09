@@ -28,10 +28,10 @@ task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	p
 ```
 
 
-Remember to set `-resume` button if you run the pipeline adding additional samples. 
-For example, if you initial run only have two samples A549_GFPkd_1 and A549_PRMT5kd_1 and the job finishes running successfully. 
-After a few days, you have new data generated, which is A549_GFPkd_2 and A549_PRMT5kd_2.
-You can run the same pipeline by editing the samplesheets.tsv and run the pipeline in the same directory. The pipeline won't repeat the QC and ailgnment step for the first two samples. 
+### Remember to set `-resume` button if you run the pipeline adding additional samples.       
+For example, if you initial run only have two samples A549_GFPkd_1 and A549_PRMT5kd_1 and the job finishes running successfully.         
+After a few days, you have new data generated, which is A549_GFPkd_2 and A549_PRMT5kd_2.         
+You can run the same pipeline by editing the samplesheets.tsv and run the pipeline in the same directory. The pipeline won't repeat the QC and ailgnment step for the first two samples.      
 ```
 sample,fastq_1,fastq_2,strandedness
 A549_GFPkd_1,SRR3362661_1.fastq.gz,SRR3362661_2.fastq.gz,auto
