@@ -30,9 +30,8 @@ task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	p
 
 
 ### Remember to set `-resume` button if you run the pipeline adding additional samples.       
-For example, if you initial run only have two samples A549_GFPkd_1 and A549_PRMT5kd_1 and the job finishes running successfully.         
-After a few days, you have new data generated, which is A549_GFPkd_2 and A549_PRMT5kd_2.         
-You can run the same pipeline by editing the samplesheets.tsv and run the pipeline in the same directory. The pipeline won't repeat the QC and ailgnment step for the first two samples.      
+Ensure you enable the -resume option when executing the pipeline with extra samples. For instance, if your initial run included just two samples, A549_GFPkd_1 and A549_PRMT5kd_1, and completed successfully, you might later acquire additional data, such as A549_GFPkd_2 and A549_PRMT5kd_2. To incorporate these new samples, you simply need to update the samplesheets.tsv file and rerun the pipeline in the same directory. By doing this, the pipeline will bypass the QC and alignment steps for the initial two samples, avoiding unnecessary repetition.        
+
 ```
 sample,fastq_1,fastq_2,strandedness
 A549_GFPkd_1,SRR3362661_1.fastq.gz,SRR3362661_2.fastq.gz,auto
