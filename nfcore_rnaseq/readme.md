@@ -16,7 +16,7 @@ sed 's/sample_description,fastq_1,fastq_2,auto/sample,fastq_1,fastq_2,strandedne
 /cluster/tufts/xli37/test_run/nfcore/rnaseq/pipeline_info/execution_trace_*
 ```
 
-* This is a sample of the progress file, which is crucial for monitoring the pipeline. The pipeline consists of various steps, each assigned a unique task_id. Upon completion of a task, details such as the task's name, status, duration, %cpu, and peak_vmem are recorded in this file.
+* This is a sample of the pipeline log file, which is crucial for monitoring the pipeline. The pipeline consists of various steps, each assigned a unique task_id. Upon completion of a task, details such as the task's name, status, duration, %cpu, and peak_vmem are recorded in this file.
 * The %cpu and peak_vmem data are particularly valuable as they inform us about the memory requirements for future pipeline executions, enabling us to allocate resources more efficiently.
 
 ```
