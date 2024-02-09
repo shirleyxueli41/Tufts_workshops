@@ -11,13 +11,14 @@ sed 's/sample_description,fastq_1,fastq_2,auto/sample,fastq_1,fastq_2,strandedne
 ```
 
 
-### Progress file can be found here
+### Pipeline log file can be found here
 ```shell
 /cluster/tufts/xli37/test_run/nfcore/rnaseq/pipeline_info/execution_trace_*
 ```
 
-* Example of the progress file. The pipeline involves many steps, each is with one task_id. When a task is finished, that task will be logged here in this file, with other information like name of the task, status, duration, %cpu, and peak_vmem.      
-* %cpu and peak_vmem are important information because we will know how much memory we should ask next time we run the pipelien.      
+* This is a sample of the progress file, which is crucial for monitoring the pipeline. The pipeline consists of various steps, each assigned a unique task_id. Upon completion of a task, details such as the task's name, status, duration, %cpu, and peak_vmem are recorded in this file.
+* The %cpu and peak_vmem data are particularly valuable as they inform us about the memory requirements for future pipeline executions, enabling us to allocate resources more efficiently.
+
 ```
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
 1	d6/4a9080	303711	NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GUNZIP_GTF (hg38.ncbiRefSeq.gtf.gz)	COMPLETED	0	2024-02-09 14:44:43.053	4.9s	4s	72.6%	2.4 MB	7.2 MB	40 MB	792 MB
