@@ -1,5 +1,6 @@
 
-### After fetching, we will have a samplesheet.tsv stored under the output directory of fetching. We will then modify the samplesheet so it will be the input of the next step which is rnaseq.      
+### After fetching 
+We will have a samplesheet.tsv stored under the output directory of fetching. We will then modify the samplesheet so it will be the input of the next step which is rnaseq.      
 
 ```shell
 DIR=/cluster/tufts/xli37/test_run/nfcore/2024-02-08/
