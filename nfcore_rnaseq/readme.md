@@ -2,9 +2,11 @@
 After fetching, we will have a samplesheet.tsv stored under the output directory of fetching. We will then modify the samplesheet so it will be the input of the next step which is rnaseq.      
 
 ```shell
-awk -F"," 'OFS=","{print $29,$2,$3,"auto"}' /cluster/tufts/xli37/test_run/nfcore/2024-02-08/samplesheet/samplesheet.csv  |sed 's/"//g'  |
+DIR=/cluster/tufts/xli37/test_run/nfcore/2024-02-08/
+rnaseqDIR=/cluster/tufts/xli37/test_run/nfcore/rnaseq/
+awk -F"," 'OFS=","{print $29,$2,$3,"auto"}' $DIR/samplesheet/samplesheet.csv  |sed 's/"//g'  |
 sed 's/sample_description,fastq_1,fastq_2,auto/sample,fastq_1,fastq_2,strandedness/' \
-> /cluster/tufts/xli37/test_run/nfcore/rnaseq/samplesheet.csv
+> $rnaseqDIR/samplesheet.csv
 ```
 
 
