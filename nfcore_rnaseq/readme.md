@@ -1,5 +1,5 @@
 
-After fetching, we will have a samplesheet.tsv stored under the output directory of fetching. We will then modify the samplesheet so it will be the input of the next step which is rnaseq.      
+### After fetching, we will have a samplesheet.tsv stored under the output directory of fetching. We will then modify the samplesheet so it will be the input of the next step which is rnaseq.      
 
 ```shell
 DIR=/cluster/tufts/xli37/test_run/nfcore/2024-02-08/
@@ -10,7 +10,7 @@ sed 's/sample_description,fastq_1,fastq_2,auto/sample,fastq_1,fastq_2,strandedne
 ```
 
 
-Progress file can be found here
+### Progress file can be found here
 ```shell
 /cluster/tufts/xli37/test_run/nfcore/rnaseq/pipeline_info/execution_trace_*
 ```
