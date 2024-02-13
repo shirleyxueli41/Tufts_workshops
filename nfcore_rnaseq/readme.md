@@ -40,3 +40,8 @@ A549_GFPkd_2,SRR3362662_1.fastq.gz,SRR3362662_2.fastq.gz,auto
 A549_PRMT5kd_1,SRR3362664_1.fastq.gz,SRR3362664_2.fastq.gz,auto
 A549_PRMT5kd_2,SRR3362665_1.fastq.gz,SRR3362665_2.fastq.gz,auto
 ```
+
+
+### How much storage should I have?
+I ran into this 'Disk quota exceeded' problem. 
+Not sure it's because I run this pipeline too many times and generate too many intermidiate files or because it just use up many storage. 
