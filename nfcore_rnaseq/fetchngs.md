@@ -2,7 +2,7 @@
 In this workshop, we will use the RNAseq data from a paper studying the epigenetic regulator `PRMT5` and its obligate cofactor `MEP50` in human.   
 ![PRMT5 Paper](images/PRMT5_paper.png)
 From the paper, we learn that the raw data is available in in Gene Expression Omnibus at `GSE80182`.
-![accession](images/accession.png)
+<img src="images/accession.png" alt="accession" width="50%">
 
 ## Fetchngs
 To run the `fetchngs` pipeline, we can first create a working directory where the pipeline will run inside. 
@@ -39,7 +39,7 @@ Below are the arguments we will use:
 
 After you fill in these fields, we can launch now. 
 
-When the job starts, you can click the link after `Session ID: `. If you `view` `outpupt.log`, you can the running processes of nextflow. 
+When the job starts, you can click the link after `Session ID: `. If you `view` `outpupt.log`, you can check the running processes of nextflow. 
 ```
 
 ------------------------------------------------------
