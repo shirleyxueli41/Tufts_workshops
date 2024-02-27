@@ -135,3 +135,8 @@ executor >  slurm (2)
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_MER... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 ```
+
+
+### Remember to delete `work/` directory     
+<img width="935" alt="Screenshot 2024-02-26 at 19 22 28" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/e09f0ff7-8a3e-4937-8d80-a7f15e3e97e3">
+
