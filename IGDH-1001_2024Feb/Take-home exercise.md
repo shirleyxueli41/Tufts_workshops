@@ -26,11 +26,18 @@ For this SRA run [SRR21926282](https://www.ncbi.nlm.nih.gov/sra/?term=SRR2192628
 # Exercise 2 
 Review the materials on "[Hands-on sesssion.md](https://github.com/shirleyxueli41/Tufts_workshops/blob/main/IGDH-1001_2024Feb/Hands-on%20session.md)", especially the session "Exercise 3 Taxonomy assignment and interpretation." and "Exercise 4 Taxonomy visualization.". 
 
-For the samples listed below, identify the SRA runs, process them using Galaxy, and determine the top 3 species for each sample along with generating a Krona plot for each.              
+For the samples provided, please follow these steps: First, identify the Sequence Read Archive (SRA) run numbers associated with each sample. Next, utilize the Galaxy platform to process these SRA runs. Your goal is to ascertain the top three genera present in each sample. Additionally, for each sample, create a Krona chart to visually represent the taxonomic classification of the organisms found.
+
 >SAMN31308859      
 >SAMN31308863     
 >SAMN31308856     
 >SAMN31308853      
+     
+> [!WARNING]       
+> *Identify the top three genera instead of species*
+> *To do so, for the filtering step in exercise , replace "c4==S" to "c4==G"*        
+
+
 
 Analyze and compare the results from the four SRA runs, particularly between samples from wineries and breweries.
 Write a report including the answers to the questions above, results from Galaxy, and screenshots, in a Microsoft Word document.
