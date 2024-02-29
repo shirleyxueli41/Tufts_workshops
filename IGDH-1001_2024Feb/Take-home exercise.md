@@ -46,6 +46,8 @@ Write a report including the answers to the questions above, results from Galaxy
 * Summarize the results, with a comparison between winery and brewery samples. Remember to compare between winery samples and brewery samples. (3 points)
 
      
+> [!NOTE]       
+> *Please don't hesitate to reach out if you have any questions.*        
 
 
    
