@@ -1,12 +1,12 @@
 Date: Feb 29, 2024   
 Author: Shirley Li, xue.li37@tufts.edu     
 Class ID: Sp24-IDGH-1001-1-Bioinformatics    
-Canvas link: https://canvas.tufts.edu/courses/55751/files/folder/IDGH_1001_Bioinformatics_2024 
+Canvas link: https://canvas.tufts.edu/courses/55751/assignments
 
 # Exercise 1 
 ## 1.1
 Visit the NCBI to search for the BioProject [PRJNA891065](https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA891065) and anwser the following questions:           
->1. what is this project about? Summarize in a few sentences.     
+>1. What is this project about? Summarize in a few sentences.     
 >2. How many biosamples are included in the project?
 >3. Which gene is being sequenced, the 16S or 18S rRNA gene?
 
