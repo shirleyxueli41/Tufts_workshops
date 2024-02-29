@@ -21,6 +21,6 @@ Assignment - Rubric (25 points total)
 Please don't hesitate to reach out if you have any question. 
 Shirley Li: xue.li37@tufts.edu
 
-Warning: we ask to identify the top three genera instead of species in the take-home exercise. 
+Warning: we ask to identify the top three genera for each sample instead of species in the take-home exercise. 
 
 
