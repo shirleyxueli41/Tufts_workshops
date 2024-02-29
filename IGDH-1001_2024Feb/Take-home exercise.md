@@ -35,8 +35,9 @@ For the samples provided, please follow these steps: First, identify the Sequenc
      
 > [!WARNING]       
 > *Identify the top three genera instead of species*
-> *To do so, for the filtering step in exercise , replace "c4==S" to "c4==G"*        
-
+> *To do so, for the filtering step in Hands-on exercise.md , replace "c4==S" to "c4==G"* 
+           
+![Screenshot 2024-02-29 at 12 42 18](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/83959223-4da5-4ea2-b5fb-f7c7c50f2e1b)
 
 
 Analyze and compare the results from the four SRA runs, particularly between samples from wineries and breweries.
