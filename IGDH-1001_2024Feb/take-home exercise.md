@@ -1,7 +1,32 @@
-Date: Feb 6, 2024   
+Date: Feb 29, 2024   
 Author: Shirley Li, xue.li37@tufts.edu     
 Class ID: Sp24-IDGH-1001-1-Bioinformatics    
 Canvas link: https://canvas.tufts.edu/courses/55751/files/folder/IDGH_1001_Bioinformatics_2024 
+
+# Exercise 1 
+Go to NCBI to search bioproject [PRJNA891065](https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA891065) and anwser the following questions:           
+1. what this project is about? Use a few sentences to summarize.
+2. How many biosamples are there in the project?
+3. What is the genes to be sequenced? 16S or 18S rRNA gene?
+
+This is the paper for this bioproject. [Combining omics tools for the characterization of the microbiota of diverse vinegars obtained by submerged culture: 16S rRNA amplicon sequencing and MALDI-TOF MS](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9767973/)
+
+1. Read the abstract of the paper. Use at most three sentences to summarize. 
+
+For this SRA run [SRR21926282](https://www.ncbi.nlm.nih.gov/sra/?term=SRR21926282), answer the following questions:     
+1. What are the sequencing instruments?
+2. What are the sequencing strategy?
+3. Is it paired-end reads or single-end reads?      
+4. How many reads are there in the sequencing run?
+5. What is the biosample for it? What sample is it? Check "environmental medium" on the biosample page.
+     
+# Exercise 2 
+Review the materials on Hands-on sesssion.md, especially the session. 
+
+For the following SRA runs. Process them using Galaxy. And get the top 3 species for each sample and a krona plot for each sample. 
+Compare the results from the four SRA runs, especially 
+   
+
 # Introduction to Metagenomics - Session 2
 ## Learning Objective
 1.	NCBI Database Proficiency: Develop skills to efficiently locate and interpret data on the [NCBI database](https://www.ncbi.nlm.nih.gov/), including navigating to specific BioProject and SRA experiment pages.
