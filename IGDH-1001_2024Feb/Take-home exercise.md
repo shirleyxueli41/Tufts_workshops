@@ -34,8 +34,9 @@ For the samples provided, please follow these steps: First, identify the Sequenc
 >SAMN31308853      
      
 > [!WARNING]       
-> *Identify the top three genera instead of species*               
-> *To do so, for the filtering step in Hands-on exercise.md , replace "c4==S" to "c4==G"* 
+> *Identify the top three genera instead of species.*               
+> *To do so, for the filtering step in Hands-on exercise.md , replace "c4==S" to "c4==G"*
+> S stands for species, G stands for genera. 
            
 ![Screenshot 2024-02-29 at 12 42 18](https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/83959223-4da5-4ea2-b5fb-f7c7c50f2e1b)
 
@@ -49,7 +50,7 @@ Write a report including the answers to the questions above, results from Galaxy
 3 Exercise 1.3 (1 point for each question, 5 points in total)      
 4 Exercise 2:        
 * Identify the SRA ID (1 point for each sample, 4 points in total)     
-* Process the SRA in Galaxy and identify the top three species for each sample. (1 point for each sample, 4 points in total)
+* Process the SRA in Galaxy and identify the top three genera for each sample. (1 point for each sample, 4 points in total)
 * Visualize the results with Krona plots (1 point for each sample, 4 points in total)
 * Summarize the results, with a comparison between winery and brewery samples. Remember to compare between winery samples and brewery samples. (3 points)
 
