@@ -4,19 +4,44 @@ In this workshop, we will use the RNAseq data from a paper studying the epigenet
 From the paper, we learn that the raw data is available in in Gene Expression Omnibus at `GSE80182`.
 <img src="images/accession.png" alt="accession" width="50%">
 
+## Gene exression omnibus (GEO)
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80182
+
+![GEO](images/geo.png)
+
+`fetchngs` pipeline is very powerful and supports different kinds of ids, including `SRA/ENA/DDBJ/GEO ids`. We can use `GSE80182` alone to download all datasets. However, in this workshop we only want to use 6 out of 9 samples. To obtain the ids for each sample, you can click `SRA`. 
+The 9 samples are from 3 groups: MEP50kd, PRMT50kd, and GTFkd. We only want the 6 samples from PRMT50kd and GTFkd. You can see that their accessions range from SRX1693951 to SRX1693956. 
+![SRA](images/sra.png)
+
+
 ## Fetchngs
 To run the `fetchngs_new` pipeline, we can first create a working directory where the pipeline will run inside. 
-In my case, I will use `/cluster/tufts/yzhang85/rt/yzhang85/nf-core_workshp`. You can use your group's project directory as the working directory. **Please do not use your `$HOME`**.
+In my case, I will use `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/`. You can use your group's project directory as the working directory. **Please do not use your `$HOME`**.
 ```
-mkdir -p /cluster/tufts/yzhang85/rt/yzhang85/nf-core_workshop/fetchngs
-cd /cluster/tufts/yzhang85/rt/yzhang85/nf-core_workshop/fetchngs
+mkdir -p /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/
+cd /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/
 ```
 
 ### Create a sampleet.csv as input
 ```
-echo GSE80182 > samplesheet.csv
+for i in {3951..3956}
+do
+   echo "SRX169$i" >> samplesheet.csv
+done
 ```
 
+```
+cat samplesheet.csv 
+```
+
+```
+SRX1693951
+SRX1693952
+SRX1693953
+SRX1693954
+SRX1693955
+SRX1693956
+```
 ## Open OnDemand
 In the demo, we will run the pipeline using the `fetchngs` pipeline deployed on [Tufts Open OnDemand server](https://ondemand.pax.tufts.edu/)
 
@@ -29,7 +54,7 @@ Below are the arguments we will use:
 - Select cpu partition: batch
 - Resveration for class, training, workshop: default
 - Version: 1.12.0
-- Working Directory: The direcotry your created above. For me, it is `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/work`
+- Working Directory: The direcotry your created above. For me, it is `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs`
 - Output directory Name: fetchngsOut
 - Input: samplesheet.csv
 - nf_core_pipeline: rnaseq
@@ -51,7 +76,7 @@ When the job starts, you can click the link after `Session ID: `. If you `view` 
   nf-core/fetchngs v1.12.0
 ------------------------------------------------------
 Core Nextflow options
-  runName                   : nasty_fermat
+  runName                   : irreverent_rutherford
   containerEngine           : singularity
   launchDir                 : /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs
   workDir                   : /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/work
@@ -100,10 +125,6 @@ WARN: The following invalid input values have been detected:
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_IDS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
 
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_IDS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
@@ -115,7 +136,7 @@ WARN: The following invalid input values have been detected:
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 1
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 2
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
@@ -125,19 +146,7 @@ WARN: The following invalid input values have been detected:
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (1)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 1
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
-[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
-
-executor >  slurm (1)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 1
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 6
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
@@ -148,19 +157,8 @@ executor >  slurm (1)
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
 executor >  slurm (2)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [  0%] 0 of 1
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
-[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
-
-executor >  slurm (2)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+[f5/74497e] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
@@ -170,268 +168,312 @@ executor >  slurm (2)
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
 executor >  slurm (3)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+[98/7ddfa1] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[4b/2b1a84] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 9
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
 executor >  slurm (5)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+[d4/32dbdf] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[18/e50208] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 9
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
 executor >  slurm (6)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[9b/4f932a] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 9
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
+[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
+
+executor >  slurm (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_RUN... -
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
+[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
+
+executor >  slurm (7)
+[cc/902cb6] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [ 66%] 4 of 6
+[79/ed8e51] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [  0%] 0 of 4
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
 executor >  slurm (8)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[6d/0f7a5d] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [  0%] 0 of 6
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[56/5c6fea] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 9
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (10)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (9)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[94/89f0f1] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [  0%] 0 of 6
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[47/72d6e2] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 9
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
-[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
-
-executor >  slurm (11)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
-[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 9
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
 executor >  slurm (11)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[9e/c00aee] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [  0%] 0 of 6
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 9
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (1)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (12)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [  0%] 0 of 6
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[1d/2add5e] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 11%] 1 of 9
-[96/45f6a6] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [  0%] 0 of 1
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (1)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (12)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[79/ed8e51] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [ 16%] 1 of 6
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[1d/2add5e] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 11%] 1 of 9
-[96/45f6a6] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 1 of 1
+[-        ] process > NFCORE_FETCHNGS:SRA:ASPERA_CLI -
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (2)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (13)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[9e/c00aee] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [ 83%] 5 of 6
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[19/082198] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 22%] 2 of 9
-[aa/d0cadf] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 50%] 1 of 2
+[fc/5fb242] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 5
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (2)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (14)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[19/082198] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 22%] 2 of 9
-[aa/d0cadf] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 2 of 2
+[18/9177c2] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (3)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (15)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[9b/4f932a] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 33%] 3 of 9
-[b4/b4a349] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 66%] 2 of 3
+[5b/ea1a20] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (4)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (17)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[47/72d6e2] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 44%] 4 of 9
-[60/8ad1bf] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 75%] 3 of 4
+[28/bd7c27] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (4)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[47/72d6e2] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 44%] 4 of 9
-[60/8ad1bf] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 4 of 4
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (5)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[4b/2b1a84] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 55%] 5 of 9
-[93/6dbdc2] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 80%] 4 of 5
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (6)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[56/5c6fea] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 77%] 7 of 9
-[a8/adccd9] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 83%] 5 of 6
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [  0%] 0 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_TO_... -
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (7)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18), local (1)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[56/5c6fea] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 77%] 7 of 9
-[a8/adccd9] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 85%] 6 of 7
+[fc/5fb242] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 16%] 1 of 6
+[37/ef25f3] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [  0%] 0 of 1
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (7)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18), local (3)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[56/5c6fea] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 77%] 7 of 9
-[64/7dec0f] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 7 of 7
+[5b/ea1a20] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 50%] 3 of 6
+[57/81810c] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 33%] 1 of 3
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (9)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18), local (3)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[1f/5cb27e] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 88%] 8 of 9 ✔
-[24/ad1814] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 87%] 7 of 8
+[5b/ea1a20] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 50%] 3 of 6
+[9e/2d06e4] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 66%] 2 of 3
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (9)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18), local (4)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 9 of 9 ✔
-[e6/43d871] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 9 of 9 ✔
+[26/a54f32] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 66%] 4 of 6
+[a7/64edfa] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 75%] 3 of 4
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
 
-executor >  slurm (11), local (9)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (18), local (4)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 9 of 9 ✔
-[e6/43d871] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 9 of 9 ✔
+[26/a54f32] process > NFCORE_FETCHNGS:SRA:ASPERA_... [ 66%] 4 of 6
+[a7/64edfa] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 4 of 4
+[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
+
+executor >  slurm (18), local (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 6 of 6 ✔
+[cb/3d036d] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [ 83%] 5 of 6
+[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
+
+executor >  slurm (18), local (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 6 of 6 ✔
+[cb/3d036d] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 6 of 6 ✔
+[-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... -
+
+executor >  slurm (18), local (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
+[-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 6 of 6 ✔
+[cb/3d036d] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:MULTIQC... [  0%] 0 of 1
 
-executor >  slurm (12), local (9)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (19), local (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 9 of 9 ✔
-[e6/43d871] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 9 of 9 ✔
-[95/4af109] process > NFCORE_FETCHNGS:SRA:MULTIQC... [  0%] 0 of 1
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 6 of 6 ✔
+[cb/3d036d] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 6 of 6 ✔
+[0f/409afa] process > NFCORE_FETCHNGS:SRA:MULTIQC... [  0%] 0 of 1
 
-executor >  slurm (12), local (9)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (19), local (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 9 of 9 ✔
-[e6/43d871] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 9 of 9 ✔
-[95/4af109] process > NFCORE_FETCHNGS:SRA:MULTIQC... [100%] 1 of 1 ✔
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 6 of 6 ✔
+[cb/3d036d] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 6 of 6 ✔
+[0f/409afa] process > NFCORE_FETCHNGS:SRA:MULTIQC... [  0%] 0 of 1
 
-executor >  slurm (12), local (9)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (19), local (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 9 of 9 ✔
-[e6/43d871] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 9 of 9 ✔
-[95/4af109] process > NFCORE_FETCHNGS:SRA:MULTIQC... [100%] 1 of 1 ✔
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 6 of 6 ✔
+[cb/3d036d] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 6 of 6 ✔
+[0f/409afa] process > NFCORE_FETCHNGS:SRA:MULTIQC... [100%] 1 of 1 ✔
 -[nf-core/fetchngs] Pipeline completed successfully-
 WARN: =============================================================================
   Please double-check the samplesheet that has been auto-created by the pipeline.
@@ -444,16 +486,16 @@ WARN: ==========================================================================
   running nf-core/other pipelines.
 ===================================================================================
 
-executor >  slurm (12), local (9)
-[4c/4c3aef] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 1 of 1 ✔
-[c1/d55e6f] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 1 of 1 ✔
+executor >  slurm (19), local (6)
+[81/8a2aaa] process > NFCORE_FETCHNGS:SRA:SRA_IDS... [100%] 6 of 6 ✔
+[4f/ee3a77] process > NFCORE_FETCHNGS:SRA:SRA_RUN... [100%] 6 of 6 ✔
 [-        ] process > NFCORE_FETCHNGS:SRA:SRA_FAS... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
 [-        ] process > NFCORE_FETCHNGS:SRA:FASTQ_D... -
-[ca/a10744] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 9 of 9 ✔
-[e6/43d871] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 9 of 9 ✔
-[95/4af109] process > NFCORE_FETCHNGS:SRA:MULTIQC... [100%] 1 of 1 ✔
+[54/cf3d1d] process > NFCORE_FETCHNGS:SRA:ASPERA_... [100%] 6 of 6 ✔
+[cb/3d036d] process > NFCORE_FETCHNGS:SRA:SRA_TO_... [100%] 6 of 6 ✔
+[0f/409afa] process > NFCORE_FETCHNGS:SRA:MULTIQC... [100%] 1 of 1 ✔
 -[nf-core/fetchngs] Pipeline completed successfully-
 WARN: =============================================================================
   Please double-check the samplesheet that has been auto-created by the pipeline.
@@ -465,10 +507,10 @@ WARN: ==========================================================================
   as additional columns to help you manually curate the samplesheet before
   running nf-core/other pipelines.
 ===================================================================================
-Completed at: 01-Mar-2024 13:39:55
-Duration    : 19m 8s
-CPU hours   : 8.2
-Succeeded   : 21
+Completed at: 02-Mar-2024 18:15:53
+Duration    : 11m 9s
+CPU hours   : 3.0
+Succeeded   : 25
 
 
 Cleaning up...
