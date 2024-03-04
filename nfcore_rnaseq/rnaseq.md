@@ -84,12 +84,13 @@ In this workshop, we will show users how to download your own reference genomes.
 - Working Directory: `/cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/`   ## Change this to your own directory
 - outdir: rnaseqOut
 - input: samplesheet.csv
-- multiqc_title: PRMT5-MEP50
+- multiqc_title: PRMT5ks vs. GFPkd
 - iGenomes: None
 - fasta: https://ftp.ensembl.org/pub/release-111/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 - gtf: https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111.gtf.gz
 - trimmer: trimgalor
 - extra_fastp_args: -q 35 --paired
+- min_trimmed_reads: 50
 - aligner: star_salmon
 - save_reference: true
 - skip_bbsplit: true
