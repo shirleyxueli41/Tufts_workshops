@@ -15,7 +15,7 @@ The 9 samples are from 3 groups: MEP50kd, PRMT50kd, and GTFkd. We only want the 
 
 
 ## Fetchngs
-To run the `fetchngs_new` pipeline, we can first create a working directory where the pipeline will run inside. 
+To run the `fetchngs` pipeline, we can first create a working directory where the pipeline will run inside. 
 In my case, I will use `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/`. You can use your group's project directory as the working directory. **Please do not use your `$HOME`**.
 ```
 mkdir -p /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/
