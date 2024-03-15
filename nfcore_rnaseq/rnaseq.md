@@ -260,3 +260,31 @@ You can clean the `work` directory, by mannualy run
 ```
 rm -rf work
 ```
+
+
+### Running pipeline on the command line
+```
+module load nf-core
+export NXF_SINGULARITY_CACHEDIR=/cluster/tufts/biocontainers/nf-core/singularity-images
+
+nextflow run /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-rnaseq/3.14.0/3_14_0 
+  -profile tufts \
+  --input  samplesheet.csv \
+  --outdir rnaseqOut \
+  --gtf "https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111.gtf.gz" \
+  --fasta "https://ftp.ensembl.org/pub/release-111/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz" \
+  -- skip_pseudo_alignment \
+  -- save_reference
+```
+
+#### Another easier way
+```
+module load nf-core-rnaseq/3.14.0
+rnaseq -profile tufts \
+  --input  samplesheet.csv \
+  --outdir rnaseqOut \
+  --gtf "https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111.gtf.gz" \
+  --fasta "https://ftp.ensembl.org/pub/release-111/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz" \
+  -- skip_pseudo_alignment \
+  -- save_reference
+```
