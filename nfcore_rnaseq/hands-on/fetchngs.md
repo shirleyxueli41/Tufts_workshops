@@ -15,6 +15,9 @@ The 9 samples are from 3 groups: MEP50kd, PRMT50kd, and GTFkd. We only want the 
 
 
 ## Fetchngs
+nf-core/fetchngs is a bioinformatics pipeline to fetch metadata and raw FastQ files from both public databases. At present, the pipeline supports SRA / ENA / DDBJ / GEO ids.
+<img src="https://raw.githubusercontent.com/nf-core/fetchngs/1.12.0//docs/images/nf-core-fetchngs_metro_map_grey.png" alt="nf-core/fetchngs" width="100%">
+
 To run the `fetchngs` pipeline, we can first create a working directory where the pipeline will run inside. 
 In my case, I will use `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/`. You can use your group's project directory as the working directory. **Please do not use your `$HOME`**.
 ```
