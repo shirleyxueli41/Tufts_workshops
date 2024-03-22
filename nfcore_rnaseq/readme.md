@@ -1,47 +1,49 @@
+This repository stores the slides and hands-on sessions for nf-core and Nextflow training workshops provided by Tufts Research Technology in April 2024.
 
-### After fetching 
-A samplesheet.tsv will be placed in the output directory after the fetching process. We will then modify this samplesheet to serve as the input for the subsequent step, which is rnaseq.    
+## Nextflow
+[Nextflow](https://www.nextflow.io)is a software tool used to design and run scientific workflows, particularly in bioinformatics [Wikipedia]. It allows researchers to automate complex data analysis processes by chaining together smaller tasks. Here are some key features of [Nextflow]:
 
-```shell
-DIR=/cluster/tufts/xli37/test_run/nfcore/2024-02-08/
-rnaseqDIR=/cluster/tufts/xli37/test_run/nfcore/rnaseq/
-awk -F"," 'OFS=","{print $29,$2,$3,"auto"}' $DIR/samplesheet/samplesheet.csv  |sed 's/"//g'  |
-sed 's/sample_description,fastq_1,fastq_2,auto/sample,fastq_1,fastq_2,strandedness/' \
-> $rnaseqDIR/samplesheet.csv
-```
+- Scalability: It can handle large datasets and run on various computing environments, including local machines, clusters, and clouds.
+- Reproducibility: By using containers, Nextflow ensures that workflows run the same way every time, regardless of the computing environment.
+- Portability: Workflows written in Nextflow can be easily run on different platforms without modification.
+- Fast Prototyping: It allows for quick assembly of complex pipelines by reusing existing scripts and tools.
 
-
-### Pipeline log file can be found here
-```shell
-/cluster/tufts/xli37/test_run/nfcore/rnaseq/pipeline_info/execution_trace_*
-```
-
-* This is a sample of the pipeline log file, which is crucial for monitoring the pipeline. The pipeline consists of various steps, each assigned a unique task_id. Upon completion of a task, details such as the task's name, status, duration, %cpu, and peak_vmem are recorded in this file.
-* The %cpu and peak_vmem data are particularly valuable as they inform us about the memory requirements for future pipeline executions, enabling us to allocate resources more efficiently.
-
-```
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	d6/4a9080	303711	NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GUNZIP_GTF (hg38.ncbiRefSeq.gtf.gz)	COMPLETED	0	2024-02-09 14:44:43.053	4.9s	4s	72.6%	2.4 MB	7.2 MB	40 MB	792 MB
-2	65/1b01a6	303701	NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GUNZIP_FASTA (hg38.fa.gz)	COMPLETED	0	2024-02-09 14:44:43.039	23.7s	22.9s	86.9%	2.4 MB	7.2 MB	938.2 MB	3 GB
-21	0e/5755be	305721	NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:CUSTOM_GETCHROMSIZES (hg38.fa)	COMPLETED	0	2024-02-09 14:45:07.819	11s	10s	99.7%	2.9 MB	11.9 MB	3 GB	35.2 KB
-22	1f/69cfd0	305711	NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GTF_FILTER (hg38.fa)	COMPLETED	0	2024-02-09 14:45:07.803	16s	15s	94.8%	16.3 MB	25.1 MB	3.8 GB	778.5 MB
-24	68/002402	307408	NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GTF2BED (hg38.filtered.gtf)	COMPLETED	0	2024-02-09 14:45:24.814	26.5s	25s	99.6%	4 GB	4 GB	778.7 MB	32.3 MB
-
-```
+## nf-core
+nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. There are currently around 100 pipelines available as of April 2024. Below are some of the most popular nf-core pipelines:
+- [rnaseq](https://nf-co.re/rnaseq)
+- [sarek](https://nf-co.re/sarek)
+- [mag](https://nf-co.re/mag)
+- [chipseq](https://nf-co.re/chipseq)
+- [scrnaseq](https://nf-co.re/scrnaseq)
+- [atacseq](https://nf-co.re/atacseq)
+- [ampliseq](https://nf-co.re/ampliseq)
+- [nanoseq](https://nf-co.re/nanoseq)
+- [methylseq](https://nf-co.re/methylseq)
+- [rnafusion](https://nf-co.re/rnafusion)
+- [eager](https://nf-co.re/eager)
+- [fetchngs](https://nf-co.re/fetchngs)
+- [differentialabundance](https://nf-co.re/differentialabundance)
 
 
-### Remember to set `-resume` button if you run the pipeline adding additional samples.       
-Ensure you enable the -resume option when executing the pipeline with extra samples. For instance, if your initial run included just two samples, A549_GFPkd_1 and A549_PRMT5kd_1, and completed successfully, you might later acquire additional data, such as A549_GFPkd_2 and A549_PRMT5kd_2. To incorporate these new samples, you simply need to update the samplesheets.tsv file and rerun the pipeline in the same directory. By doing this, the pipeline will bypass the QC and alignment steps for the initial two samples, avoiding unnecessary repetition.        
-
-```
-sample,fastq_1,fastq_2,strandedness
-A549_GFPkd_1,SRR3362661_1.fastq.gz,SRR3362661_2.fastq.gz,auto
-A549_GFPkd_2,SRR3362662_1.fastq.gz,SRR3362662_2.fastq.gz,auto
-A549_PRMT5kd_1,SRR3362664_1.fastq.gz,SRR3362664_2.fastq.gz,auto
-A549_PRMT5kd_2,SRR3362665_1.fastq.gz,SRR3362665_2.fastq.gz,auto
-```
+## Hands-on
+- [fetchngs](hands-on/fetchngs.md)
+- [rnaseq](hands-on/rnaseq.md)
+- [differentialabundance](hands-on/differentialabundance.md)
 
 
-### How much storage should I have?
-I ran into this 'Disk quota exceeded' problem. 
-Not sure it's because I run this pipeline too many times and generate too many intermidiate files or because it just use up many storage. 
+## Presenters
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/shirleyxueli41"><img src="https://avatars.githubusercontent.com/u/88347911?v=4" width="100px;" alt=""/><br /><sub><b>Shirley Li</b></sub></a><br /></
+    td>
+    <td align="center"><a href="https://github.com/zhan4429"><img src="https://avatars.githubusercontent.com/u/90942318" width="100px;" alt=""/><br /><sub><b>Yucheng Zhang</b></sub></a><br /></td>    
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->

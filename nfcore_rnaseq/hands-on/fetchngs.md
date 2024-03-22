@@ -1,17 +1,17 @@
 ## Reference paper
 In this workshop, we will use the RNAseq data from a paper studying the epigenetic regulator `PRMT5` and its obligate cofactor `MEP50` in human.   
-![PRMT5 Paper](images/PRMT5_paper.png)
+![PRMT5 Paper](../images/PRMT5_paper.png)
 From the paper, we learn that the raw data is available in in Gene Expression Omnibus at `GSE80182`.
-<img src="images/accession.png" alt="accession" width="50%">
+<img src="../images/accession.png" alt="accession" width="50%">
 
 ## Gene exression omnibus (GEO)
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80182
 
-![GEO](images/geo.png)
+![GEO](../images/geo.png)
 
 `fetchngs` pipeline is very powerful and supports different kinds of ids, including `SRA/ENA/DDBJ/GEO ids`. We can use `GSE80182` alone to download all datasets. However, in this workshop we only want to use 6 out of 9 samples. To obtain the ids for each sample, you can click `SRA`. 
 The 9 samples are from 3 groups: MEP50kd, PRMT50kd, and GTFkd. We only want the 6 samples from PRMT50kd and GTFkd. You can see that their accessions range from SRX1693951 to SRX1693956. 
-![SRA](images/sra.png)
+![SRA](../images/sra.png)
 
 
 ## Fetchngs
