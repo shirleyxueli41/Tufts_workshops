@@ -24,7 +24,7 @@ You should see the below output:
 id_mappings.csv  multiqc_config.yml  samplesheet.csv
 ```
 
-We can check the content of `samplesheet.csv`. We can use this `samplesheet.csv` directly for rnaseq anlaysis, but I prefer to create a simpler samplesheet.
+We can use `samplesheet.csv` directly for RNAseq analysis, but I prefer creating a simpler samplesheet.
 
 ```
 head -n 3 samplesheet.csv
@@ -42,7 +42,7 @@ head -n 3 samplesheet.csv
 awk -F"," 'OFS=","{print $27,$2,$3,$4}' samplesheet.csv | sed 's/A549_//g' | sed 's/sample_title/sample/g'> /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/samplesheet.csv
 ```
 
-Using `cat` we can see that our newly generated samplesheet is simple and easy to read.
+We can clearly see that the samplesheet we generated is simple to read. And it only has 4 columns: `sample`, `fastq_1`, `fastq_2`, and `strandness`.
 
 ```
 cat /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/samplesheet.csv
@@ -58,7 +58,7 @@ cat /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/samplesheet.csv
 "PRMT5kd_3","fetchngsOut/fastq/SRX1693956_SRR3362666_1.fastq.gz","fetchngsOut/fastq/SRX1693956_SRR3362666_2.fastq.gz","auto"
 ```
 
-You may notice that the `fastq_1` and `fastq_2` columns contain the location of fastq files. However, these are **relative paths** instead of **absolute paths**. To make sure the `rnaseq` pipeline can locate the fastq files, we can create a soft link for `fetchngsOut` in the working directory of `rnaseq` pipeline.
+Please note that the `fastq_1` and `fastq_2` columns in the data contain the location of fastq files. However, these paths are **relative** rather than **absolute**. To ensure the `rnaseq` pipeline can locate these fastq files, we can create a soft link for `fetchngsOut` in the working directory of `rnaseq` pipeline.
 
 ```
 cd /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/
@@ -66,27 +66,28 @@ ln -s /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/fetchngsOut .
 ls -l
 ```
 
-You should see that we linked `fetchngsOut` to the current directory.
+Please verify that we have successfully linked `fetchngsOut` to the current directory.
 
 ```
-lrwxrwxrwx 1 yzhang85 biotools   69 Mar  1 14:18 fetchngsOut -> /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/fetchngsOut/
--rw-rw---- 1 yzhang85 biotools 1163 Mar  1 14:16 samplesheet.csv
+ls
+  lrwxrwxrwx 1 yzhang85 biotools   69 Mar  1 14:18 fetchngsOut -> /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/fetchngsOut/
+  -rw-rw---- 1 yzhang85 biotools 1163 Mar  1 14:16 samplesheet.csv
 ```
 
 ## rnaseq on Open OnDemand
 
-Using `fetchngs` we already downloaded the raw fastq files for RNAseq. However, to conduct RNAseq analysis we also need the reference genome fasta file and gtf annotation file. Since these are human samples. We will need the human reference genome.
+We have already downloaded the raw fastq files for RNAseq using `fetchngs`. However, for conducting RNAseq analysis, we also need the reference genome `fasta` file and `gtf` annotation file. Since these are human samples, we require the human reference genome.
 
-To obtain human reference genome, there are two options:
+There are two ways to obtain the human reference genome:
 
-1. Choose `GRCh38` in `iGenomes`. This method is simple. I already set up the `iGenomes` for users. You only need to select which reference to use. However, this method is `not recommended`, because the annotation files in `iGenomes` have not been updated in some years. So they are out of date. **Do not use them for your own research**. They are good choices for classroom/workshop.
-2. Download the latest version of genomes from public database such as `Ensembl` or `NCBI`.
+1. Choose `GRCh38` in `iGenomes`. This method is simple, and the `iGenomes` have been set up for users. You only need to select the reference to use. However, this method is `not recommended` because the annotation files in `iGenomes` have not been updated in some years, making them out of date. We advise against using them for your research and recommend them for classroom/workshop purposes only.
+2. Download the latest version of genomes from public databases such as `Ensembl` or `NCBI`.
 
-In this workshop, we will show users how to download your own reference genomes.
+In this workshop, we will guide you on how to download your own reference genomes from [Ensemble database](https://useast.ensembl.org/index.html).
 
-### Arguments
+### Open OnDemand Arguments
 
-- Number of hours: 12
+- Number of hours: 10
 - Select cpu partition: batch
 - Reservation for class, training, workshop: Default
 - Version: 3.14.0
@@ -264,15 +265,11 @@ Succeeded   : 209
 Cleaning up...
 ```
 
-### Clean the work
+## Running pipeline on the command line
 
-You can clean the `work` directory, by mannualy run
+If you prefer to run the pipelines using the command line interface, you can submit a slurm jobscript with the following code.
 
-```
-rm -rf work
-```
-
-### Running pipeline on the command line
+#### Run the pipeline directly
 
 ```
 module load nf-core
@@ -299,4 +296,14 @@ rnaseq -profile tufts \
   --fasta "https://ftp.ensembl.org/pub/release-111/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz" \
   -- skip_pseudo_alignment \
   -- save_reference
+```
+
+## Nextflow clean
+
+### Clean the work
+
+You can clean the `work` directory, by mannualy run
+
+```
+rm -rf work
 ```
