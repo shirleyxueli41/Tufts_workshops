@@ -1,31 +1,44 @@
+# nf-core fetchngs
+
 ## Reference paper
-In this workshop, we will use the RNAseq data from a paper studying the epigenetic regulator `PRMT5` and its obligate cofactor `MEP50` in human.   
+
+In this workshop, we will analyze RNAseq data from a study on the human epigenetic regulator `PRMT5` and its cofactor `MEP50`.
+
 ![PRMT5 Paper](../images/PRMT5_paper.png)
-From the paper, we learn that the raw data is available in in Gene Expression Omnibus at `GSE80182`.
+
+According to the paper, the raw data can be found on Gene Expression Omnibus database at `GSE80182`.
+
 <img src="../images/accession.png" alt="accession" width="60%">
 
 ## Gene exression omnibus (GEO)
+
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80182
 
 <img src="../images/geo.png" alt="GEO" width="50%">
 
-`fetchngs` pipeline is very powerful and supports different kinds of ids, including `SRA/ENA/DDBJ/GEO ids`. We can use `GSE80182` alone to download all datasets. However, in this workshop we only want to use 6 out of 9 samples. To obtain the ids for each sample, you can click `SRA`. 
-The 9 samples are from 3 groups: MEP50kd, PRMT50kd, and GTFkd. We only want the 6 samples from PRMT50kd and GTFkd. You can see that their accessions range from SRX1693951 to SRX1693956. 
+The `fetchngs` pipeline is an extremely powerful tool that is capable of working with various types of IDs, such as SRA, ENA, DDBJ, and GEO IDs. You can use `GSE80182` on its own to download all available datasets. However, for this workshop, we only require 6 out of the 9 available samples. In order to obtain the necessary IDs for each of these samples, simply click on `SRA`.
+
+The required 6 samples are from `PRMT50kd` and `GTFkd` groups, with accession numbers ranging from `SRX1693951` to `SRX1693956`. For this demo, we will exclude the remaining 3 `MEP50kd` samples.
+
 <img src="../images/sra.png" alt="SRA" width="40%">
 
-
 ## Fetchngs
+
 nf-core/fetchngs is a bioinformatics pipeline to fetch metadata and raw FastQ files from both public databases. At present, the pipeline supports SRA / ENA / DDBJ / GEO ids.
 <img src="https://raw.githubusercontent.com/nf-core/fetchngs/1.12.0//docs/images/nf-core-fetchngs_metro_map_grey.png" alt="nf-core/fetchngs" width="100%">
 
-To run the `fetchngs` pipeline, we can first create a working directory where the pipeline will run inside. 
-In my case, I will use `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/`. You can use your group's project directory as the working directory. **Please do not use your `$HOME`**.
+In order to execute the `fetchngs` pipeline, let's start by creating a working directory where the pipeline will run.
+For example, you can create a directory similar to this:
+`/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/`.
+If you belong to a group, you can create a folder in your group directory and use it as the working directory. **However, please avoid using your `$HOME` directory**.
+
 ```
-mkdir -p /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/
+mkdir -p /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/ ## Change it to your directory.
 cd /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/
 ```
 
 ### Create a sampleet.csv as input
+
 ```
 for i in {3951..3956}
 do
@@ -34,7 +47,7 @@ done
 ```
 
 ```
-cat samplesheet.csv 
+cat samplesheet.csv
 ```
 
 ```
@@ -45,15 +58,18 @@ SRX1693954
 SRX1693955
 SRX1693956
 ```
-## Open OnDemand
+
+### Open OnDemand
+
 In the demo, we will run the pipeline using the `fetchngs` pipeline deployed on [Tufts Open OnDemand server](https://ondemand.pax.tufts.edu/)
 
-Under `Bioinformatcis Apps`, you can find `fetchngs` within the `nf-core pipelines` subcategory. 
+Under `Bioinformatcis Apps`, you can find `fetchngs` within the `nf-core pipelines` subcategory.
 
-This pipeline is pretty simple. We can leave most parameters as default. 
+This pipeline is pretty simple. We can leave most parameters as default.
 
 Below are the arguments we will use:
-- Number of hours: 4
+
+- Number of hours: 1
 - Select cpu partition: batch
 - Resveration for class, training, workshop: default
 - Version: 1.12.0
@@ -66,9 +82,10 @@ Below are the arguments we will use:
 
 ![fetchngs](../images/fetchngs.png)
 
-After you fill in these fields, we can launch now. 
+Once you fill in the required fields, we can launch the job.
 
-When the job starts, you can click the link after `Session ID: `. If you `view` `outpupt.log`, you can check the running processes of nextflow. 
+When the job starts, you can click the link next to `Session ID:` to view `output.log` and check the running processes of nextflow.
+
 ```
 ------------------------------------------------------
                                         ,--./,-.
@@ -86,7 +103,7 @@ Core Nextflow options
   projectDir                : /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-fetchngs/1.12.0/1_12_0
   userName                  : yzhang85
   profile                   : tufts
-  configFiles               : 
+  configFiles               :
 
 Input/output options
   input                     : samplesheet.csv
@@ -216,11 +233,14 @@ Succeeded   : 25
 Cleaning up...
 ```
 
+## Clean up
 
-### Remember to delete `work/` directory     
+### Remember to delete `work/` directory
+
 <img width="935" alt="Screenshot 2024-02-26 at 19 22 28" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/e09f0ff7-8a3e-4937-8d80-a7f15e3e97e3">
 
 ### nextflow clean
+
 ```
 cd /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs
 module load nextflow
@@ -228,8 +248,9 @@ nextflow log
 ```
 
 You should see some useful runtime information of completed jobs in the current directory. We can also use the `RUN NAME` and `nextflow clean` to clean the `work` directory. In this case, the `RUN NAME` is `irreverent_rutherford`.
+
 ```
-TIMESTAMP          	DURATION	RUN NAME             	STATUS	REVISION ID	SESSION ID                          	COMMAND                                                                                                                                                
+TIMESTAMP          	DURATION	RUN NAME             	STATUS	REVISION ID	SESSION ID                          	COMMAND
 2024-03-02 18:04:43	11m 10s 	irreverent_rutherford	OK    	0f0b67958c 	9a5c876b-5c30-48c2-b55e-48677363f295	nextflow run /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-fetchngs/1.12.0/1_12_0 -params-file nf-params.json -profile tufts --partition batch
 ```
 

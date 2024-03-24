@@ -1,7 +1,7 @@
-## nf-core/rnaseq
+# nf-core/rnaseq
+
 nf-core/rnaseq is a bioinformatics pipeline that can be used to analyse RNA sequencing data obtained from organisms with a reference genome and annotation. It takes a samplesheet and FASTQ files as input, performs quality control (QC), trimming and (pseudo-)alignment, and produces a gene expression matrix and extensive QC report.
 <img src="https://raw.githubusercontent.com/nf-core/rnaseq/3.14.0//docs/images/nf-core-rnaseq_metro_map_grey.png" alt="nf-core/rnaseq" width="100%">
-
 
 ## Create the working directory
 
@@ -66,27 +66,31 @@ ln -s /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/fetchngsOut .
 ls -l
 ```
 
-You should see that we linked `fetchngsOut` to the current directory. 
+You should see that we linked `fetchngsOut` to the current directory.
+
 ```
 lrwxrwxrwx 1 yzhang85 biotools   69 Mar  1 14:18 fetchngsOut -> /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/fetchngsOut/
 -rw-rw---- 1 yzhang85 biotools 1163 Mar  1 14:16 samplesheet.csv
 ```
 
 ## rnaseq on Open OnDemand
-Using `fetchngs` we already downloaded the raw fastq files for RNAseq. However, to conduct RNAseq analysis we also need the reference genome fasta file and gtf annotation file. Since these are human samples. We will need the human reference genome. 
+
+Using `fetchngs` we already downloaded the raw fastq files for RNAseq. However, to conduct RNAseq analysis we also need the reference genome fasta file and gtf annotation file. Since these are human samples. We will need the human reference genome.
 
 To obtain human reference genome, there are two options:
+
 1. Choose `GRCh38` in `iGenomes`. This method is simple. I already set up the `iGenomes` for users. You only need to select which reference to use. However, this method is `not recommended`, because the annotation files in `iGenomes` have not been updated in some years. So they are out of date. **Do not use them for your own research**. They are good choices for classroom/workshop.
 2. Download the latest version of genomes from public database such as `Ensembl` or `NCBI`.
 
-In this workshop, we will show users how to download your own reference genomes. 
+In this workshop, we will show users how to download your own reference genomes.
 
 ### Arguments
+
 - Number of hours: 12
 - Select cpu partition: batch
 - Reservation for class, training, workshop: Default
 - Version: 3.14.0
-- Working Directory: `/cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/`   ## Change this to your own directory
+- Working Directory: `/cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/` ## Change this to your own directory
 - outdir: rnaseqOut
 - input: samplesheet.csv
 - multiqc_title: PRMT5ks vs. GFPkd
@@ -120,7 +124,7 @@ Core Nextflow options
   projectDir                : /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-rnaseq/3.14.0/3_14_0
   userName                  : yzhang85
   profile                   : tufts
-  configFiles               : 
+  configFiles               :
 
 Input/output options
   input                     : samplesheet.csv
@@ -261,18 +265,20 @@ Cleaning up...
 ```
 
 ### Clean the work
-You can clean the `work` directory, by mannualy run 
+
+You can clean the `work` directory, by mannualy run
+
 ```
 rm -rf work
 ```
 
-
 ### Running pipeline on the command line
+
 ```
 module load nf-core
 export NXF_SINGULARITY_CACHEDIR=/cluster/tufts/biocontainers/nf-core/singularity-images
 
-nextflow run /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-rnaseq/3.14.0/3_14_0 
+nextflow run /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-rnaseq/3.14.0/3_14_0
   -profile tufts \
   --input  samplesheet.csv \
   --outdir rnaseqOut \
@@ -283,6 +289,7 @@ nextflow run /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-rnaseq/3.14.
 ```
 
 #### Another easier way
+
 ```
 module load nf-core-rnaseq/3.14.0
 rnaseq -profile tufts \
