@@ -95,7 +95,7 @@ In this workshop, we will guide you on how to download your own reference genome
 - Working Directory: `/cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/` ## Change this to your own directory
 - outdir: rnaseqOut
 - input: samplesheet.csv
-- multiqc_title: PRMT5ks vs. GFPkd
+- multiqc_title: PRMT5kd vs. GFPkd
 - iGenomes: None
 - fasta: https://ftp.ensembl.org/pub/release-111/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 - gtf: https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111.gtf.gz
