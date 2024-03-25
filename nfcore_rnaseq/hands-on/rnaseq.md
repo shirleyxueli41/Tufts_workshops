@@ -101,7 +101,6 @@ In this workshop, we will guide you on how to download your own reference genome
 - gtf: https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111.gtf.gz
 - trimmer: trimgalor
 - extra_fastp_args: -q 35 --paired
-- min_trimmed_reads: 50
 - aligner: star_salmon
 - save_reference: true
 - skip_bbsplit: true
@@ -283,7 +282,6 @@ nextflow run /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-rnaseq/3.14.
   --gtf "https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111.gtf.gz" \
   --fasta "https://ftp.ensembl.org/pub/release-111/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz" \
   --extra_trimgalore_args "-q 35 --paired" \
-  --min_trimmed_reads 50 \
   --skip_pseudo_alignment \
   --save_reference
 ```
@@ -298,7 +296,6 @@ rnaseq -profile tufts \
   --gtf "https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111.gtf.gz" \
   --fasta "https://ftp.ensembl.org/pub/release-111/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz" \
   --extra_trimgalore_args "-q 35 --paired" \
-  --min_trimmed_reads 50 \
   --skip_pseudo_alignment \
   --save_reference
 ```
