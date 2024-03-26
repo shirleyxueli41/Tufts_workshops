@@ -1,44 +1,50 @@
 # nf-core fetchngs
+In this workshop, users will be guided through the practical application of the [nf-core fetchngs pipeline](https://nf-co.re/fetchngs/1.12.0), focusing specifically on downloading raw sequencing reads from the [NCBI database](https://www.ncbi.nlm.nih.gov/). Participants will gain insights into utilizing this powerful tool within the nf-core framework with [Open OnDemand](https://ondemand.pax.tufts.edu/) to efficiently download necessary data for bioinformatics analyses. 
 
-## Reference paper
+## Example Dataset and Reference paper
 
-In this workshop, we will analyze RNAseq data from a study on the human epigenetic regulator `PRMT5` and its cofactor `MEP50`.
+In this workshop, we will analyze RNAseq data from a [study (Asberry et al., 2022)](https://pubs.acs.org/doi/10.1021/acs.jmedchem.2c01000) on the human epigenetic regulator `PRMT5` and its cofactor `MEP50`.
 
-![PRMT5 Paper](../images/PRMT5_paper.png)
+- Paper: Discovery and Biological Characterization of PRMT5:MEP50 Protein–Protein Interaction Inhibitors
+<img src="../images/PRMT5_paper.png" alt="PRMT5 Paper" width="700" height="250"/>
 
-According to the paper, the raw data can be found on Gene Expression Omnibus database at `GSE80182`.
-
-<img src="../images/accession.png" alt="accession" width="60%">
+- According to the paper, the raw data can be found on Gene Expression Omnibus database at `GSE80182`.
+<img src="../images/accession.png" alt="accession" width="45%">
 
 ## Gene exression omnibus (GEO)
 
-https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80182
+The [Gene Expression Omnibus (GEO)](https://www.ncbi.nlm.nih.gov/geo/) is a public repository that archives and freely distributes comprehensive sets of microarray, next-generation sequencing, and other forms of high-throughput functional genomic data.
 
-<img src="../images/geo.png" alt="GEO" width="50%">
-
+You can find the page for the specific example dataset at [this link](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80182).           
+<img src="../images/geo.png" alt="GEO" width="50%">                         
+<br>       
 The `fetchngs` pipeline is an extremely powerful tool that is capable of working with various types of IDs, such as SRA, ENA, DDBJ, and GEO IDs. You can use `GSE80182` on its own to download all available datasets. However, for this workshop, we only require 6 out of the 9 available samples. In order to obtain the necessary IDs for each of these samples, simply click on `SRA`.
 
 The required 6 samples are from `PRMT50kd` and `GTFkd` groups, with accession numbers ranging from `SRX1693951` to `SRX1693956`. For this demo, we will exclude the remaining 3 `MEP50kd` samples.
 
 <img src="../images/sra.png" alt="SRA" width="40%">
 
-## Fetchngs
+## nf-core Fetchngs
 
-nf-core/fetchngs is a bioinformatics pipeline to fetch metadata and raw FastQ files from both public databases. At present, the pipeline supports SRA / ENA / DDBJ / GEO ids.
-<img src="https://raw.githubusercontent.com/nf-core/fetchngs/1.12.0//docs/images/nf-core-fetchngs_metro_map_grey.png" alt="nf-core/fetchngs" width="100%">
+
+nf-core/fetchngs is a bioinformatics pipeline to fetch metadata and raw FastQ files from both public databases. At present, the pipeline supports SRA / ENA / DDBJ / GEO ids.             
+<img src="https://raw.githubusercontent.com/nf-core/fetchngs/1.12.0//docs/images/nf-core-fetchngs_metro_map_grey.png" alt="nf-core/fetchngs" width="85%">
 
 In order to execute the `fetchngs` pipeline, let's start by creating a working directory where the pipeline will run.
 For example, you can create a directory similar to this:
 `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/`.
-If you belong to a group, you can create a folder in your group directory and use it as the working directory. **However, please avoid using your `$HOME` directory**.
+If you belong to a group, you can create a folder in your group directory and use it as the working directory. **However, please DO NOT your `$HOME` directory**.      
+> [!WARNING]       
+> nf-core pipeline requires a lot of storage to run, please do not run within your $HOME directory. 
 
 ```
-mkdir -p /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/ ## Change it to your directory.
+mkdir -p /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/ ## Change it to your directory!!!
 cd /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/
 ```
 
 ### Create a sampleet.csv as input
 
+Use the code below to create a `samplesheet.csv` file, which will be the input for fetchngs pipeline.            
 ```
 for i in {3951..3956}
 do
@@ -46,6 +52,7 @@ do
 done
 ```
 
+Now let's see what's in the file.         
 ```
 cat samplesheet.csv
 ```
@@ -80,7 +87,11 @@ Below are the arguments we will use:
 - nf_core_rnaseq_strandedness: auto
 - download_method: aspera
 
-![fetchngs](../images/fetchngs.png)
+
+A screenshot of the Open OnDemand fetchngs app.          
+![fetchngs](../images/fetchngs.png)          
+
+<br>
 
 Once you fill in the required fields, we can launch the job.
 
@@ -232,15 +243,29 @@ Succeeded   : 25
 
 Cleaning up...
 ```
+## Check the output files       
+Once your job is completed, you should be able to see the following output files in your output directory.          
+<img src="../images/fetchngs_out.png" width="25%">
+
+In the fastq/ directory, the downloaded FASTQ files are located.                        
+<img src="../images/fetchngs_out2.png" width="40%">
+
+Within the samplesheet/ directory, there's a file called samplesheet.csv that holds all the essential information needed for the subsequent nf-core/rnaseq pipeline.           
+> [!WARNING]      
+> Do not use this samplesheet directly as the input for the next pipeline, nf-core/rnaseq.  It requires format adjustments before proceeding. 
+
+
 
 ## Clean up
 
-### Remember to delete `work/` directory
+### Check the size of the output files    
+If you check the size of your output files through `du -sh`, you can see the work/ directory occupies significant storage space. 
 
-<img width="935" alt="Screenshot 2024-02-26 at 19 22 28" src="https://github.com/shirleyxueli41/Tufts_workshops/assets/88347911/e09f0ff7-8a3e-4937-8d80-a7f15e3e97e3">
+<img src="../images/work_dir_large.png" width="30%">
 
 ### nextflow clean
 
+Let's check the log file first.       
 ```
 cd /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs
 module load nextflow
@@ -282,3 +307,9 @@ Removed /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/work/18/9486c4
 Removed /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/work/cb/3d036ddc1e77fde9620839c3c0c733
 Removed /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/work/0f/409afa1c6ded02885970255b88da06
 ```
+
+You also clean the work/ directory by `rm -r work/`    
+
+
+### Summary       
+After you run this pipeline successfully, you should be able to see your output in 
