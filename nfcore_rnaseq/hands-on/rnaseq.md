@@ -103,7 +103,6 @@ In this workshop, we will guide you on how to download your own reference genome
 - extra_fastp_args: -q 35 --paired
 - aligner: star_salmon
 - save_reference: true
-- skip_bbsplit: true
 - skip_umi_extract: true
 - skip_pseudo_alignment: true
 - skip_stringtie: true
