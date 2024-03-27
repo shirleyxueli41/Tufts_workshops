@@ -30,9 +30,9 @@ nf-core is a community effort to collect a curated set of analysis pipelines bui
 
 ## Hands-on
 
-- [fetchngs](hands-on/fetchngs.md)
-- [rnaseq](hands-on/rnaseq.md)
-- [differentialabundance](hands-on/differentialabundance.md)
+- [fetchngs](hands-on/01_fetchngs.md)
+- [rnaseq](hands-on/02_rnaseq.md)
+- [differentialabundance](hands-on/03_differentialabundance.md)
 
 ## Presenters
 
