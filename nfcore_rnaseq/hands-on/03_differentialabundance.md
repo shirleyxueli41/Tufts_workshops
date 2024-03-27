@@ -77,12 +77,22 @@ ln -s /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/rnaseqOut/star_sal
 | PRMT5kd_2 | PRMT5kd   | 2         | A     |
 | PRMT5kd_3 | PRMT5kd   | 3         | A     |
 
+You can copy my samplesheet.csv to your workding directory.
+```
+cd /cluster/tufts/biocontainers/workshop/Spring2024/differentialabundance
+cp /cluster/tufts/biocontainers/workshop/Spring2024/differentialabundance/samplesheet.csv .
+```
 ## contrast.csv
 
 | id               | variable  | reference | target  | blocking |
 | ---------------- | --------- | --------- | ------- | -------- |
 | PRMT5kd_vs_GFPkd | treatment | GFPkd     | PRMT5kd |          |
 
+You can copy my contrast.csv to your workding directory.
+```
+cd /cluster/tufts/biocontainers/workshop/Spring2024/differentialabundance
+cp /cluster/tufts/biocontainers/workshop/Spring2024/differentialabundance/contrast.csv .
+```
 ## Open OnDemand
 
 Click `differentialabundance` in `Bioinformatics Apps`.
@@ -248,7 +258,3 @@ Duration    : 17m 11s
 CPU hours   : 0.3
 Succeeded   : 15
 ```
-<<<<<<< Updated upstream:nfcore_rnaseq/hands-on/03_differentialabundance.md
-=======
-
->>>>>>> Stashed changes:nfcore_rnaseq/hands-on/differentialabundance.md
