@@ -76,7 +76,7 @@ This pipeline is pretty simple. We can leave most parameters as default.
 
 Below are the arguments we will use:
 
-- Number of hours: 4
+- Number of hours: 12
 - Select cpu partition: batch
 - Resveration for class, training, workshop: default
 - Version: 1.12.0
