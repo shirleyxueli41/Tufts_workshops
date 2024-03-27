@@ -16,6 +16,11 @@ In the last RNAseq workshop, we selected `save_reference`. So that all referenec
 
 ```
 ls -1 /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/rnaseqOut/genome/
+```
+
+You can see the GRCh38 reference genome's gtf and fasta files. In addition, you can see the newly created STAR `index` and `rsem` folders that can be used for your future RNA-Seq analysis.
+
+```
 Homo_sapiens.GRCh38.111.gtf
 Homo_sapiens.GRCh38.dna.primary_assembly.fa
 Homo_sapiens.GRCh38.dna.primary_assembly.fa.fai
@@ -36,10 +41,13 @@ ln -s /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/rnaseqOut/genome/H
 
 ## matrix
 
-In the output folder of RNAseq workshop, you can find the count file we need `salmon.merged.gene_counts.tsv`.
+In the output folder of RNAseq workshop, you can find the count file we need `salmon.merged.gene_counts.tsv` via `ls`.
 
 ```
 $ ls -1 /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/rnaseqOut/star_salmon/*.tsv
+```
+
+```
 /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/rnaseqOut/star_salmon/salmon.merged.gene_counts.tsv
 /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/rnaseqOut/star_salmon/salmon.merged.gene_counts_length_scaled.tsv
 /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/rnaseqOut/star_salmon/salmon.merged.gene_counts_scaled.tsv
