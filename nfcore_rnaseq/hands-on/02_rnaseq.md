@@ -88,7 +88,7 @@ In this workshop, we will guide you on how to download your own reference genome
 
 ### Open OnDemand Arguments
 
-- Number of hours: 10
+- Number of hours: 24
 - Select cpu partition: batch
 - Reservation for class, training, workshop: Default
 - Version: 3.14.0
@@ -117,14 +117,14 @@ In this workshop, we will guide you on how to download your own reference genome
   nf-core/rnaseq v3.14.0
 ------------------------------------------------------
 Core Nextflow options
-  runName                   : disturbed_bhabha
+  runName                   : irreverent_watson
   containerEngine           : singularity
   launchDir                 : /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq
   workDir                   : /cluster/tufts/biocontainers/workshop/Spring2024/rnaseq/work
   projectDir                : /cluster/tufts/biocontainers/nf-core/pipelines/nf-core-rnaseq/3.14.0/3_14_0
   userName                  : yzhang85
   profile                   : tufts
-  configFiles               :
+  configFiles               : 
 
 Input/output options
   input                     : samplesheet.csv
@@ -138,20 +138,9 @@ Reference genome options
 
 Read trimming options
   extra_trimgalore_args     : -q 35 --paired
-  min_trimmed_reads         : 50
-
-UMI options
-  umitools_grouping_method  : unique
-
-Alignment options
-  pseudo_aligner            : salmon
-  salmon_quant_libtype      : A
 
 Optional outputs
   save_reference            : true
-
-Quality Control
-  deseq2_vst                : false
 
 Process skipping options
   skip_umi_extract          : true
@@ -169,6 +158,7 @@ Max job request options
   max_time                  : 7d
 
 !! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
 ------------------------------------------------------
 If you use nf-core/rnaseq for your analysis please cite:
 
@@ -202,62 +192,62 @@ If you use nf-core/rnaseq for your analysis please cite:
 .
 .
 
-Monitor the execution with Nextflow Tower using this URL: https://tower.nf/user/yucheng-zhang/watch/2DcWSll5aJBDA2
+Monitor the execution with Nextflow Tower using this URL: https://tower.nf/user/yucheng-zhang/watch/5di71eyYto2FH9
 executor >  slurm (209)
-[45/1d0e68] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
-[82/6f3261] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
-[d7/3e1e54] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
-[27/7ffb4f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
-[f7/6c706d] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
-[aa/0378a5] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
-[86/620135] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
+[d1/517f0f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
+[29/eb99ef] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
+[eb/937d34] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
+[30/ba7437] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
+[f8/be5fd5] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
+[b8/092179] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
+[c1/7d9c49] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1 ✔
 [-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
-[b3/38555a] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
-[e1/1efc8c] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
-[ba/954695] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 1 of 1 ✔
-[7e/2d0704] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
-[9d/795522] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
-[11/9ab781] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
-[48/8df8ab] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
-[d5/aa11d1] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
-[a0/b5f351] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
-[74/d91c8f] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
-[f1/8deacd] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
-[f0/25b5df] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 6 of 6 ✔
-[93/ab5462] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
-[15/f2e0a5] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
-[59/abf002] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
-[43/7bf4f5] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
-[7e/3fc92e] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
-[78/5b087a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
-[32/d50012] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1 ✔
-[01/55455a] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
-[d0/fef98e] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
-[b5/3655f5] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
-[b9/378067] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
-[6d/468f2e] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
-[1e/b1da09] process > NFCORE_RNASEQ:RNASEQ:SUBREA... [100%] 6 of 6 ✔
-[31/2159a7] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [100%] 6 of 6 ✔
-[8c/bcdb39] process > NFCORE_RNASEQ:RNASEQ:BEDTOO... [100%] 6 of 6 ✔
-[00/418ce2] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
-[9b/579af4] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
-[f6/f2c2a3] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
-[44/16d0c9] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
-[85/48ed9b] process > NFCORE_RNASEQ:RNASEQ:QUALIM... [100%] 6 of 6 ✔
-[7e/4b0dc0] process > NFCORE_RNASEQ:RNASEQ:DUPRAD... [100%] 6 of 6 ✔
-[57/644dc3] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
-[b5/4fe781] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
-[4a/63350b] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
-[b3/d0ea0f] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
-[fa/cc1e55] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
-[81/6d2c5c] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
-[52/7b534a] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
-[8c/4bea78] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [100%] 1 of 1 ✔
-[3d/39b828] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [100%] 1 of 1 ✔
+[2e/e95ccb] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
+[d3/24f617] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
+[97/2bb6ec] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 1 of 1 ✔
+[49/f116ce] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
+[66/7832b0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 6 of 6 ✔
+[df/7eb1ea] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
+[6a/857d7c] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
+[46/65e709] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
+[06/684719] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
+[01/2fc01d] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
+[0f/f9bf31] process > NFCORE_RNASEQ:RNASEQ:ALIGN_... [100%] 6 of 6 ✔
+[81/eaf8db] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 6 of 6 ✔
+[d5/12a872] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
+[17/ceb58b] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
+[f7/3dcf2d] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
+[4b/2991d1] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
+[9d/1204f5] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
+[14/249750] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1 ✔
+[76/2d571a] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1 ✔
+[b7/1658e4] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
+[64/31c31b] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
+[c6/9ff3a9] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
+[36/df1dd9] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
+[f4/fb9e0d] process > NFCORE_RNASEQ:RNASEQ:BAM_MA... [100%] 6 of 6 ✔
+[42/28fcdb] process > NFCORE_RNASEQ:RNASEQ:SUBREA... [100%] 6 of 6 ✔
+[68/b06f5c] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [100%] 6 of 6 ✔
+[ce/7d55f5] process > NFCORE_RNASEQ:RNASEQ:BEDTOO... [100%] 6 of 6 ✔
+[24/45057e] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
+[36/194966] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
+[de/70fc07] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
+[be/a747c3] process > NFCORE_RNASEQ:RNASEQ:BEDGRA... [100%] 6 of 6 ✔
+[2b/25dca2] process > NFCORE_RNASEQ:RNASEQ:QUALIM... [100%] 6 of 6 ✔
+[21/ebcfd0] process > NFCORE_RNASEQ:RNASEQ:DUPRAD... [100%] 6 of 6 ✔
+[91/91276e] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
+[18/b555d7] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
+[8c/a1307b] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
+[5f/d7cac7] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
+[c7/ce1ec3] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
+[78/10ee50] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
+[44/7c4656] process > NFCORE_RNASEQ:RNASEQ:BAM_RS... [100%] 6 of 6 ✔
+[56/57e6ac] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [100%] 1 of 1 ✔
+[6b/f6514d] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [100%] 1 of 1 ✔
 -[nf-core/rnaseq] Pipeline completed successfully -
-Completed at: 02-Mar-2024 23:06:51
-Duration    : 3h 10m 33s
-CPU hours   : 118.1
+Completed at: 26-Mar-2024 14:57:46
+Duration    : 6h 45m 41s
+CPU hours   : 109.2
 Succeeded   : 209
 
 
