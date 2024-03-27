@@ -240,3 +240,7 @@ Duration    : 17m 11s
 CPU hours   : 0.3
 Succeeded   : 15
 ```
+<<<<<<< Updated upstream:nfcore_rnaseq/hands-on/03_differentialabundance.md
+=======
+
+>>>>>>> Stashed changes:nfcore_rnaseq/hands-on/differentialabundance.md
