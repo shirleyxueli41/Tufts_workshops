@@ -251,8 +251,7 @@ In the `fastq/` directory, the downloaded FASTQ files are located.
 <img src="../images/fetchngs_out2.png" width="40%">
 
 Within the `samplesheet/` directory, there's a file called `samplesheet.csv` that holds all the essential information needed for the subsequent nf-core/rnaseq pipeline.           
-> [!WARNING]      
-> Do not use this samplesheet directly as the input for the next pipeline, nf-core/rnaseq.  It requires format adjustments before proceeding. 
+
 
 
 
