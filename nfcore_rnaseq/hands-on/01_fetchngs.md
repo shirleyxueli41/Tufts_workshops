@@ -33,7 +33,7 @@ nf-core/fetchngs is a bioinformatics pipeline to fetch metadata and raw FastQ fi
 In order to execute the `fetchngs` pipeline, let's start by creating a working directory where the pipeline will run.
 For example, you can create a directory similar to this:
 `/cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/`.
-If you belong to a group, you can create a folder in your group directory and use it as the working directory. **However, please DO NOT your `$HOME` directory**.      
+If you belong to a group, you can create a folder in your group directory and use it as the working directory. **However, please DO NOT use your `$HOME` directory**.      
 > [!WARNING]       
 > nf-core pipeline requires a lot of storage to run, please do not run within your $HOME directory. 
 
@@ -42,7 +42,7 @@ mkdir -p /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/ ## Change it
 cd /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/
 ```
 
-### Create a sampleet.csv as input
+### Create a samplesheet.csv as input
 
 Use the code below to create a `samplesheet.csv` file, which will be the input for fetchngs pipeline.            
 ```
@@ -93,7 +93,7 @@ A screenshot of the Open OnDemand fetchngs app.
 
 <br>
 
-Once you fill in the required fields, we can launch the job.
+Once you fill in the required fields, you can launch the job.
 
 When the job starts, you can click the link next to `Session ID:` to view `output.log` and check the running processes of nextflow.
 
@@ -247,10 +247,10 @@ Cleaning up...
 Once your job is completed, you should be able to see the following output files in your output directory.          
 <img src="../images/fetchngs_out.png" width="25%">
 
-In the fastq/ directory, the downloaded FASTQ files are located.                        
+In the `fastq/` directory, the downloaded FASTQ files are located.                        
 <img src="../images/fetchngs_out2.png" width="40%">
 
-Within the samplesheet/ directory, there's a file called samplesheet.csv that holds all the essential information needed for the subsequent nf-core/rnaseq pipeline.           
+Within the `samplesheet/` directory, there's a file called `samplesheet.csv` that holds all the essential information needed for the subsequent nf-core/rnaseq pipeline.           
 > [!WARNING]      
 > Do not use this samplesheet directly as the input for the next pipeline, nf-core/rnaseq.  It requires format adjustments before proceeding. 
 
@@ -259,7 +259,7 @@ Within the samplesheet/ directory, there's a file called samplesheet.csv that ho
 ## Clean up
 
 ### Check the size of the output files    
-If you check the size of your output files through `du -sh`, you can see the work/ directory occupies significant storage space. 
+If you check the size of your output files through `du -sh *`, you can see the work/ directory occupies significant storage space. 
 
 <img src="../images/work_dir_large.png" width="30%">
 
@@ -308,8 +308,9 @@ Removed /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/work/cb/3d036d
 Removed /cluster/tufts/biocontainers/workshop/Spring2024/fetchngs/work/0f/409afa1c6ded02885970255b88da06
 ```
 
-You also clean the work/ directory by `rm -r work/`    
+You also clean the `work/` directory by `rm -r work/`    
 
 
 ### Summary       
-After you run this pipeline successfully, you should be able to see your output in 
+After successfully running this pipeline, your specified output directory will contain the FASTQ files that were downloaded from the NCBI database. These files will be the raw sequencing reads that you will use for the next pipeline, nf-core/rnaseq. Next, we will proceed with the [nf-core/rnaseq](https://nf-co.re/rnaseq/3.14.0) pipeline to further process this dataset and conduct RNA-Seq data analysis.
+
