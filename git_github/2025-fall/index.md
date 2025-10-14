@@ -17,7 +17,7 @@
 
 ## Workshop Materials
 
-- [Slides (PDF)](slides/git-github-2025-spring.pdf)  
+- [Slides (PDF)](slides/intro_git_github-2025-fall.pdf)  
 - Recording will be uploaded soon after workshop
 
 
