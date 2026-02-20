@@ -104,6 +104,7 @@ Configure:
 - GTF: (URL or local file path listed above)
 - Outdir: `rnaseq`
 - Working directory: your project directory
+- star_index: `/cluster/tufts/workshop/public/2026spring/star_index/ `
 
 Other parameters can remain default unless discussed in workshop.
 
