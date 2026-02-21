@@ -104,7 +104,9 @@ Configure:
 - GTF: (URL or local file path listed above)
 - Outdir: `rnaseq`
 - Working directory: your project directory
+- kraken_db: `/cluster/tufts/biocontainers/datasets/kraken2/k2_standard_20251015`
 - star_index: `/cluster/tufts/workshop/public/2026spring/star_index/ `
+- salmon_index: `/cluster/tufts/workshop/public/2026spring/salmon_index/ `
 
 Other parameters can remain default unless discussed in workshop.
 
@@ -142,7 +144,8 @@ nextflow run nf-core/rnaseq \
     --input samplesheet.csv \
     --fasta $genome \
     --gtf $gtf \
-    --star_index /cluster/tufts/workshop/public/2026spring/star_index/ 
+    --star_index /cluster/tufts/workshop/public/2026spring/star_index/  \
+    --salmon_index /cluster/tufts/workshop/public/2026spring/salmon_index/ 
     --outdir rnaseq 
     
 # --star_index is provided for the workshop to avoid rebuilding the index and save time.
@@ -216,6 +219,18 @@ Contains software versions
 
 
 
+### Open OnDemand App
+
+In your working directory, this file list all parameter used
+
+```
+nf-params.json
+```
+
+
+
+
+
 # 5. Logs and Troubleshooting
 
 ## 5.1 Main Nextflow Log
@@ -237,6 +252,14 @@ It locates in the workding dir, not the outdir.
 ```
 rnaseq_<jobid>.log   # check progress
 rnaseq_<jobid>.err   # check errors
+```
+
+### Open OnDemand App
+
+In session ID folder:
+
+```
+output.log  # check progress
 ```
 
 
