@@ -23,6 +23,14 @@ SRX1693951_SRR3362661_2_sub.fastq.gz
 SRX1693956_SRR3362666_2_sub.fastq.gz
 ```
 
+Our sample fastq file located here:
+
+```
+/cluster/tufts/workshop/public/2026spring/nfcore/fastq/
+```
+
+
+
 
 
 ## 1.2 Sample Sheet (`samplesheet.csv`)
@@ -43,6 +51,14 @@ Notes:
 
 - Paired-end files must match correctly.
 - Paths can be relative or absolute (recommended).
+
+
+
+On HPC:
+
+```
+/cluster/tufts/workshop/public/2026spring/nfcore/samplesheet.csv
+```
 
 
 
@@ -107,6 +123,7 @@ Configure:
 - kraken_db: `/cluster/tufts/biocontainers/datasets/kraken2/k2_standard_20251015`
 - star_index: `/cluster/tufts/workshop/public/2026spring/star_index/ `
 - salmon_index: `/cluster/tufts/workshop/public/2026spring/salmon_index/ `
+- skip_pseudo_alignment: true
 
 Other parameters can remain default unless discussed in workshop.
 
