@@ -118,7 +118,7 @@ We will now write our first batch job to run FastQC.
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=4G
+#SBATCH --mem=8G
 #SBATCH --time=01:00:00
 #SBATCH --output=logs/fastqc_%j.out
 #SBATCH --error=logs/fastqc_%j.err
@@ -168,7 +168,7 @@ sbatch fastqc.sh
 #SBATCH --job-name=star_align
 #SBATCH --cpus-per-task=8
 #SBATCH --partition=preempt
-#SBATCH --mem=8G
+#SBATCH --mem=32G
 #SBATCH --time=02:00:00
 #SBATCH --output=logs/star_%j.out
 #SBATCH --error=logs/star_%j.err
@@ -221,7 +221,7 @@ Many downstream tools require a **sorted BAM file**. We will sort the BAM file u
 #SBATCH --job-name=sort_bam
 #SBATCH --cpus-per-task=4
 #SBATCH --partition=preempt
-#SBATCH --mem=4G
+#SBATCH --mem=32G
 #SBATCH --time=02:00:00
 #SBATCH --output=logs/sort_%j.out
 #SBATCH --error=logs/sort_%j.err
@@ -338,9 +338,9 @@ This improves efficiency and scalability.
 #SBATCH --job-name=star_align
 #SBATCH --partition=preempt
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=4G
+#SBATCH --mem=32G
 #SBATCH --time=04:00:00
-#SBATCH --array=1-4
+#SBATCH --array=1-6
 #SBATCH --output=logs/star_%A_%a.out
 #SBATCH --error=logs/star_%A_%a.err
 
@@ -352,7 +352,7 @@ DIR=/cluster/tufts/workshop/utln/myproject/
 mkdir -p $DIR/results/star_arrayjob/
 
 #============================
-# --array=1-4: where 4 = number of samples.
+# --array=1-6: where 6 = number of samples.
 # If you don’t know how many samples there are, you can count them first:
 # ls $DIR/raw_data/*_1_*.fastq.gz | wc -l
 #============================
@@ -364,7 +364,7 @@ fq=${files[$SLURM_ARRAY_TASK_ID-1]}
 # SLURM_ARRAY_TASK_ID starts at 1.
 # Bash arrays start at 0.
 
-sample=$(basename $fq _1_*.fastq.gz)
+sample=$(basename $fq _1_sub.fastq.gz)
 
 STAR \
   --runThreadN 8 \
