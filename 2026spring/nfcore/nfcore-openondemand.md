@@ -78,13 +78,13 @@ https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/Homo_sapiens.GRCh38.111
 FASTA (Genome):
 
 ```
-/cluster/tufts/workshop/public/2026spring/reference/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+/cluster/tufts/workshop/public/2026spring/star_index/Homo_sapiens.GRCh38.dna.primary_assembly.fa
 ```
 
 GTF (Annotation):
 
 ```
-/cluster/tufts/workshop/public/2026spring/reference/Homo_sapiens.GRCh38.111.gtf.gz
+/cluster/tufts/workshop/public/2026spring/star_index/Homo_sapiens.GRCh38.111.gtf
 ```
 
 
