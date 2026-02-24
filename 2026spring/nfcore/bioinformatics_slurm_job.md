@@ -1,5 +1,9 @@
 # Running Bioinformatics Jobs on Tufts HPC
 
+2026-02-24           
+
+Shirley Li: [xue.li37@tufts.edu ](mailto:xue.li37@tufts.edu)         
+
 ## 1. Set Up Your Working Directory
 
 All work for this project will be done under:
