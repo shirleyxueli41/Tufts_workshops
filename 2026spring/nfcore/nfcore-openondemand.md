@@ -164,7 +164,9 @@ nextflow run nf-core/rnaseq \
     --star_index /cluster/tufts/workshop/public/2026spring/star_index/  \
     --salmon_index /cluster/tufts/workshop/public/2026spring/salmon_index/ 
     --outdir rnaseq 
-    
+
+# -resume 
+
 # --star_index is provided for the workshop to avoid rebuilding the index and save time.
 # You do not need this flag when running the pipeline independently.
 
