@@ -1,1 +1,1 @@
-Workshop materials for the nf-core workshop (Spring 2026).
+Workshop materials 2026 Spring
