@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upstream RNA-seq Analysis | iPSC to Motor Neuron Differentiation</title>
+
+<!-- Bootswatch Flatly theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/flatly/bootstrap.min.css">
+
+<!-- Highlight.js for code syntax highlighting -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+
+<style>
+  /* ── Layout ─────────────────────────────────────────── */
+  body {
+    font-size: 15px;
+    color: #2c3e50;
+    background: #fff;
+  }
+  #page-wrapper {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── Sidebar TOC ─────────────────────────────────────── */
+  #toc-sidebar {
+    width: 270px;
+    min-width: 270px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 16px 40px 16px;
+    background: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    font-size: 13px;
+  }
+  #toc-sidebar .toc-title {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #95a5a6;
+    margin-bottom: 10px;
+  }
+  #toc-sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  #toc-sidebar ul li { margin: 2px 0; }
+  #toc-sidebar ul li a {
+    display: block;
+    padding: 3px 6px;
+    border-radius: 4px;
+    color: #2c3e50;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  #toc-sidebar ul li a:hover { background: #e9ecef; color: #18bc9c; }
+  #toc-sidebar ul li.active > a { color: #18bc9c; font-weight: 600; }
+  #toc-sidebar ul.toc-sub { padding-left: 14px; }
+  #toc-sidebar ul.toc-sub li a { color: #555; font-size: 12.5px; }
+
+  /* ── Main content ────────────────────────────────────── */
+  #main-content {
+    flex: 1;
+    padding: 36px 52px 80px 52px;
+    max-width: 900px;
+  }
+
+  /* ── Header ──────────────────────────────────────────── */
+  .doc-header {
+    border-bottom: 2px solid #18bc9c;
+    padding-bottom: 18px;
+    margin-bottom: 36px;
+  }
+  .doc-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #2c3e50;
+  }
+  .doc-header .subtitle {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+  }
+  .doc-header .meta {
+    font-size: 0.85rem;
+    color: #95a5a6;
+  }
+
+  /* ── Sections ────────────────────────────────────────── */
+  h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-top: 52px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+    color: #2c3e50;
+  }
+  h2 .section-num {
+    color: #18bc9c;
+    margin-right: 6px;
+  }
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #2c3e50;
+  }
+
+  /* ── Code blocks ─────────────────────────────────────── */
+  pre {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 13px;
+    overflow-x: auto;
+    margin: 14px 0;
+  }
+  code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 13px;
+  }
+  p code, li code, td code {
+    background: #f0f2f4;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #c0392b;
+    font-size: 12.5px;
+  }
+
+  /* ── Tables ──────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #2c3e50;
+    color: #fff;
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f8f9fa; }
+
+  /* ── Callout boxes ───────────────────────────────────── */
+  .callout {
+    border-left: 4px solid #18bc9c;
+    background: #f0fdfb;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .callout.warning {
+    border-left-color: #e74c3c;
+    background: #fdf3f2;
+  }
+  .callout.info {
+    border-left-color: #3498db;
+    background: #f0f6fd;
+  }
+  .callout p { margin: 0; }
+  .callout p + p { margin-top: 6px; }
+
+  /* ── Screenshot placeholders ─────────────────────────── */
+  .screenshot-placeholder {
+    border: 2px dashed #bdc3c7;
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 28px 16px;
+    text-align: center;
+    color: #95a5a6;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .screenshot-placeholder .icon { font-size: 2rem; margin-bottom: 6px; }
+  .screenshot-placeholder .label { font-weight: 600; color: #7f8c8d; }
+
+  /* ── File preview ────────────────────────────────────── */
+  .file-preview {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .file-preview-header {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 7px 14px;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .file-preview-header .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .file-preview-header .dot.red { background: #e74c3c; }
+  .file-preview-header .dot.yellow { background: #f39c12; }
+  .file-preview-header .dot.green { background: #2ecc71; }
+  .file-preview-header .filename { margin-left: 6px; }
+  .file-preview-body {
+    overflow-x: auto;
+    background: #fff;
+  }
+  .file-preview-body table {
+    margin: 0;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .file-preview-body th {
+    background: #f6f8fa;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 11.5px;
+    border-bottom: 2px solid #dee2e6;
+    padding: 7px 12px;
+  }
+  .file-preview-body td {
+    padding: 5px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fff;
+  }
+  .file-preview-body tr:nth-child(even) td { background: #fafafa; }
+  .file-preview-body td.gene-id { color: #7f8c8d; }
+  .file-preview-body td.gene-name { color: #2980b9; font-weight: 600; }
+  .file-preview-ellipsis {
+    text-align: center;
+    padding: 6px;
+    color: #95a5a6;
+    font-size: 18px;
+    letter-spacing: 4px;
+    background: #f8f9fa;
+    border-top: 1px solid #eee;
+  }
+
+  /* ── Workflow diagram ────────────────────────────────── */
+  .workflow-box {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #2c3e50;
+    margin: 16px 0;
+  }
+
+  /* ── Horizontal rule ─────────────────────────────────── */
+  hr {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 44px 0;
+  }
+
+  /* ── Footer ──────────────────────────────────────────── */
+  .doc-footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+    font-size: 13px;
+    color: #95a5a6;
+  }
+
+  /* ── Screenshots ─────────────────────────────────────── */
+  .screenshot {
+    max-width: 100%;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    margin: 14px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: block;
+  }
+  .screenshot-caption {
+    font-size: 12.5px;
+    color: #95a5a6;
+    margin-top: -8px;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 768px) {
+    #toc-sidebar { display: none; }
+    #main-content { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="page-wrapper">
+
+  <!-- ── Floating TOC ────────────────────────────────────────── -->
+  <nav id="toc-sidebar">
+    <div class="toc-title">Contents</div>
+    <ul>
+      <li><a href="#sec1">1 &nbsp; RNA-seq Background</a>
+        <ul class="toc-sub">
+          <li><a href="#sec1-1">1.1 &nbsp; What is RNA-seq?</a></li>
+          <li><a href="#sec1-2">1.2 &nbsp; Wet lab workflow</a></li>
+          <li><a href="#sec1-3">1.3 &nbsp; What is a FASTQ file?</a></li>
+          <li><a href="#sec1-4">1.4 &nbsp; Bioinformatics workflow</a></li>
+          <li><a href="#sec1-5">1.5 &nbsp; About the dataset</a></li>
+        </ul>
+      </li>
+      <li><a href="#sec2">2 &nbsp; Tufts Open OnDemand</a>
+        <ul class="toc-sub">
+          <li><a href="#sec2-1">2.1 &nbsp; What is OOD?</a></li>
+          <li><a href="#sec2-2">2.2 &nbsp; Logging in</a></li>
+          <li><a href="#sec2-3">2.3 &nbsp; The OOD interface</a></li>
+          <li><a href="#sec2-4">2.4 &nbsp; File browser</a></li>
+          <li><a href="#sec2-5">2.5 &nbsp; Opening a terminal</a></li>
+          <li><a href="#sec2-6">2.6 &nbsp; Working directory setup</a></li>
+        </ul>
+      </li>
+      <li><a href="#sec3">3 &nbsp; Unix Basics</a>
+        <ul class="toc-sub">
+          <li><a href="#sec3-1">3.1 &nbsp; Why Unix?</a></li>
+          <li><a href="#sec3-2">3.2 &nbsp; Navigation</a></li>
+          <li><a href="#sec3-3">3.3 &nbsp; Creating &amp; organizing files</a></li>
+          <li><a href="#sec3-4">3.4 &nbsp; Reading files</a></li>
+          <li><a href="#sec3-5">3.5 &nbsp; Editing files</a></li>
+          <li><a href="#sec3-6">3.6 &nbsp; Paths</a></li>
+          <li><a href="#sec3-7">3.7 &nbsp; Exercises</a></li>
+        </ul>
+      </li>
+      <li><a href="#sec4">4 &nbsp; nf-core/rnaseq Pipeline</a>
+        <ul class="toc-sub">
+          <li><a href="#sec4-1">4.1 &nbsp; What is Nextflow/nf-core?</a></li>
+          <li><a href="#sec4-2">4.2 &nbsp; What the pipeline does</a></li>
+          <li><a href="#sec4-3">4.3 &nbsp; The SLURM submission script</a></li>
+          <li><a href="#sec4-4">4.4 &nbsp; Submit the job</a></li>
+          <li><a href="#sec4-5">4.5 &nbsp; Monitor the job</a></li>
+          <li><a href="#sec4-6">4.6 &nbsp; Understanding the output</a></li>
+          <li><a href="#sec4-7">4.7 &nbsp; Inspect the MultiQC report</a></li>
+          <li><a href="#sec4-8">4.8 &nbsp; Putting it together</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ── Main content ─────────────────────────────────────────── -->
+  <main id="main-content">
+
+    <div class="doc-header">
+      <h1>Upstream RNA-seq Analysis</h1>
+      <div class="subtitle">From Raw Reads to Count Matrix &nbsp;|&nbsp; iPSC to Motor Neuron Differentiation</div>
+      <div class="meta">Shirley Li &nbsp;·&nbsp; xue.li37@tufts.edu &nbsp;·&nbsp; 2026</div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════ -->
+    <h2 id="sec1"><span class="section-num">1</span> RNA-seq Background</h2>
+
+    <h3 id="sec1-1">1.1 &nbsp; What is RNA-seq and why do we use it?</h3>
+
+    <p>Every cell in your body contains the same DNA, but not every gene is active at the same time — or in the same cell type. <strong>Gene expression</strong> is the process of reading a gene from DNA into messenger RNA (mRNA), which is then translated into protein. RNA sequencing (RNA-seq) measures the abundance of every mRNA molecule in a sample simultaneously, giving you a genome-wide snapshot of which genes are active and at what level.</p>
+
+    <p><strong>Why RNA-seq?</strong></p>
+    <ul>
+      <li><strong>Unbiased</strong> — no need to know in advance which genes to measure</li>
+      <li><strong>Quantitative</strong> — read counts reflect expression level</li>
+      <li><strong>Reproducible</strong> — short-read sequencing is highly standardized</li>
+      <li><strong>Widely supported</strong> — a large ecosystem of analysis tools exists</li>
+    </ul>
+
+    <p>In this workshop we use RNA-seq to track gene expression across three stages of human iPSC differentiation into spinal motor neurons: Day 0 (iPSC), Day 13 (motor neuron progenitor), and Day 28 (mature motor neuron).</p>
+
+    <h3 id="sec1-2">1.2 &nbsp; From biology to data: the wet lab workflow</h3>
+
+    <p>The journey from a cell to sequencing data involves several steps:</p>
+
+    <ol>
+      <li><strong>RNA extraction</strong> — cells are lysed and total RNA is purified</li>
+      <li><strong>mRNA selection</strong> — poly-A selection or ribo-depletion enriches for mRNA and removes ribosomal RNA (which would otherwise dominate the library)</li>
+      <li><strong>Fragmentation</strong> — mRNA is broken into ~200–500 bp fragments, since sequencers read short stretches of sequence</li>
+      <li><strong>Reverse transcription</strong> — RNA fragments are copied into complementary DNA (cDNA) using reverse transcriptase</li>
+      <li><strong>Adapter ligation</strong> — short DNA sequences are added to both ends of each fragment so they can bind to the sequencing flow cell</li>
+      <li><strong>PCR amplification</strong> — the library is amplified to generate enough material</li>
+      <li><strong>Sequencing</strong> — the Illumina sequencer reads one or both ends of each fragment (single-end or paired-end), producing <strong>FASTQ files</strong></li>
+    </ol>
+
+    <div class="callout">
+      <p><strong>Paired-end sequencing</strong> reads both ends of each fragment, giving more information about the insert and improving alignment accuracy. This dataset uses paired-end 150 bp reads.</p>
+    </div>
+
+    <h3 id="sec1-3">1.3 &nbsp; What is a FASTQ file?</h3>
+
+    <p>After sequencing, each sample is delivered as one or two FASTQ files (two for paired-end). A FASTQ file stores millions of short reads, where each read occupies four lines:</p>
+
+<pre><code class="language-plaintext">@SRR11951474.1 1/1                         ← read name
+ACGTACGTACGTACGTACGTACGTACGTACGT           ← DNA sequence
++                                           ← separator
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII           ← quality scores (Phred)</code></pre>
+
+    <p>The quality score encodes how confident the sequencer is about each base call. Higher = more confident. Poor-quality bases at the ends of reads are trimmed before alignment.</p>
+
+    <h3 id="sec1-4">1.4 &nbsp; The bioinformatics workflow: FASTQ to count matrix</h3>
+
+    <p>The computational side of RNA-seq has two stages:</p>
+
+    <p><strong>Upstream (this tutorial — run on Tufts HPC via OOD nf-core/rnaseq app):</strong></p>
+    <div class="workflow-box">
+FASTQ files<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Quality control (FastQC, MultiQC)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Adapter trimming (Trim Galore)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Alignment to reference genome (STAR)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Quantification (Salmon)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+<strong>Count matrix</strong> &nbsp;(salmon.merged.gene_counts.tsv)
+    </div>
+
+    <p><strong>Downstream (Part 2 tutorial — run in RStudio app on OOD):</strong></p>
+    <div class="workflow-box">
+Count matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Normalization + QC (DESeq2, VST)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Differential expression (DESeq2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Visualization (volcano, heatmap, PCA)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;Enrichment analysis (GO, KEGG)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+<strong>Biological interpretation</strong>
+    </div>
+
+    <h3 id="sec1-5">1.5 &nbsp; About the dataset</h3>
+
+    <p>We use a publicly available dataset from:</p>
+
+    <div class="callout info">
+      <p>Solomon E, Davis-Anderson K, Hovde B, Micheva-Viteva S, Harris JF, Twary S, Iyer R. (2021). <strong>Global transcriptome profile of the developmental principles of in vitro iPSC-to-motor neuron differentiation.</strong> <em>BMC Molecular and Cell Biology</em>, 22(1):13.</p>
+    </div>
+
+    <ul>
+      <li><strong>NCBI BioProject:</strong> PRJNA638768</li>
+      <li><strong>Experiment:</strong> Human iPSCs (WTC-11) differentiated into spinal motor neurons over 28 days, sampled at 3 timepoints</li>
+      <li><strong>Design:</strong> 3 biological replicates × 3 timepoints = <strong>9 samples total</strong></li>
+    </ul>
+
+    <table>
+      <thead><tr><th>Day</th><th>Cell type</th><th style="text-align:center">Abbreviation</th><th>What it represents</th></tr></thead>
+      <tbody>
+        <tr><td>D0</td><td>Induced pluripotent stem cell</td><td style="text-align:center">iPSC</td><td>Starting pluripotent state</td></tr>
+        <tr><td>D13</td><td>Motor neuron progenitor</td><td style="text-align:center">MNP</td><td>Progenitors of motor neurons</td></tr>
+        <tr><td>D28</td><td>Mature motor neuron</td><td style="text-align:center">mMN</td><td>Fully differentiated motor neurons</td></tr>
+      </tbody>
+    </table>
+
+    <p>Motor neurons — the cells that connect the spinal cord to muscles — are selectively lost in ALS and spinal muscular atrophy. This differentiation protocol generates the cell type most relevant to these diseases from patient stem cells, making it a powerful experimental model.</p>
+
+    <hr>
+
+    <!-- ════════════════════════════════════════════════════════ -->
+    <h2 id="sec2"><span class="section-num">2</span> Tufts Open OnDemand (OOD)</h2>
+
+    <h3 id="sec2-1">2.1 &nbsp; What is Open OnDemand?</h3>
+
+    <p>Tufts High Performance Computing (HPC) is a cluster of powerful computers managed by Research Technology. Rather than using a traditional command-line SSH connection, Tufts provides <strong>Open OnDemand</strong> — a browser-based interface that lets you access the HPC, manage files, and launch interactive apps (RStudio, Jupyter, nf-core pipelines) without leaving your web browser.</p>
+
+    <p><strong>URL:</strong> <a href="https://ondemand-p01.pax.tufts.edu/" target="_blank">https://ondemand-p01.pax.tufts.edu/</a></p>
+
+    <p>You log in with your Tufts username and password (the same as your Tufts email).</p>
+
+    <div class="callout warning">
+      <p><strong>Off-campus access:</strong> If you are connecting from outside the Tufts network, you must first connect to the <strong>Tufts VPN</strong> before accessing OOD. Download and install the VPN client from <a href="https://it.tufts.edu/vpn" target="_blank">it.tufts.edu/vpn</a>.</p>
+    </div>
+
+    <div class="callout info">
+      <p><strong>Prerequisite:</strong> You must have an active HPC account. If you do not have one, request access at <a href="https://it.tufts.edu/high-performance-computing" target="_blank">it.tufts.edu/high-performance-computing</a>.</p>
+    </div>
+
+    <h3 id="sec2-2">2.2 &nbsp; Logging in</h3>
+
+    <ol>
+      <li>If off-campus, connect to the Tufts VPN first</li>
+      <li>Open a browser and go to <a href="https://ondemand-p01.pax.tufts.edu/" target="_blank"><strong>ondemand-p01.pax.tufts.edu</strong></a></li>
+      <li>Enter your Tufts username and password</li>
+      <li>Complete Duo two-factor authentication if prompted</li>
+    </ol>
+
+    <img src="session1_figures/Screenshot 2026-06-11 at 08.53.11.png" alt="OOD login screen" class="screenshot">
+
+    <p>After logging in you will see the OOD dashboard with a navigation bar at the top.</p>
+
+    <img src="session1_figures/Screenshot 2026-06-11 at 08.53.50.png" alt="OOD dashboard showing pinned apps and top navigation bar" class="screenshot">
+
+    <h3 id="sec2-3">2.3 &nbsp; The OOD interface</h3>
+
+    <p>The top navigation bar has four main menus:</p>
+
+    <table>
+      <thead><tr><th>Menu</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Files</strong></td><td>Browse, upload, and download files on the HPC</td></tr>
+        <tr><td><strong>Jobs</strong></td><td>Submit batch jobs and monitor running jobs</td></tr>
+        <tr><td><strong>Clusters</strong></td><td>Open a shell (terminal) on the HPC</td></tr>
+        <tr><td><strong>Interactive Apps</strong></td><td>Launch RStudio, Jupyter, nf-core pipelines, and more</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec2-4">2.4 &nbsp; Navigating the file browser</h3>
+
+    <p>Click <strong>Files → Home Directory</strong> to open the file manager. You can:</p>
+    <ul>
+      <li>Browse your home directory and any lab storage folders you have access to</li>
+      <li>Upload files from your laptop (drag and drop or the Upload button)</li>
+      <li>Download files back to your laptop</li>
+      <li>Create new folders and edit text files directly in the browser</li>
+    </ul>
+
+    <img src="session1_figures/Screenshot 2026-06-11 at 08.54.29.png" alt="Files menu showing Home Directory option" class="screenshot">
+
+    <img src="session1_figures/Screenshot 2026-06-11 at 08.55.08.png" alt="OOD file browser showing home directory contents" class="screenshot">
+
+    <p>The workshop data files are stored in the shared directory:</p>
+
+<pre><code class="language-plaintext">/cluster/tufts/workshop/public/2026summer/rnaseq_motor_neuron/</code></pre>
+
+    <p>To navigate there, click <strong>Change directory</strong> in the file browser and paste the path:</p>
+
+    <img src="session1_figures/Screenshot 2026-06-11 at 08.55.27.png" alt="Change Directory dialog with workshop path entered" class="screenshot">
+
+    <h3 id="sec2-5">2.5 &nbsp; Opening a terminal</h3>
+
+    <p>To open a terminal:</p>
+
+    <ol>
+      <li>Click <strong>Clusters → Tufts HPC Shell Access</strong> in the top navigation bar</li>
+      <li>A new browser tab opens with a terminal window connected to a login node</li>
+    </ol>
+
+    <img src="session1_figures/Screenshot 2026-06-11 at 08.59.14.png" alt="Clusters menu showing Tufts HPC Shell Access option" class="screenshot">
+
+    <img src="session1_figures/Screenshot 2026-06-11 at 08.59.19.png" alt="Terminal prompt on Tufts HPC login node" class="screenshot">
+
+    <div class="callout warning">
+      <p><strong>Important:</strong> Login nodes are shared. Do not run computationally heavy jobs directly in the terminal — always submit them through SLURM (covered in Section 4). Short commands, file navigation, and job submission scripts are fine on the login node.</p>
+    </div>
+
+    <h3 id="sec2-6">2.6 &nbsp; Setting up your working directory</h3>
+
+    <div class="callout warning">
+      <p><strong>Use lab storage — not your home directory.</strong> Your home directory has only <strong>30 GB</strong> of storage. RNA-seq data and pipeline outputs can easily exceed this, causing jobs to fail and potentially disrupting others. Always work from your lab's shared storage, typically at a path like <code>/cluster/tufts/[labname]/[username]/</code>.</p>
+      <p>If you are not affiliated with a lab or do not have access to lab storage, contact <a href="mailto:tts-research@tufts.edu">tts-research@tufts.edu</a> to request allocation.</p>
+    </div>
+
+    <p>In the terminal, navigate to your lab storage and create a working directory:</p>
+
+<pre><code class="language-bash"># Navigate to your lab storage (replace with your actual lab path)
+cd /cluster/tufts/[labname]/[username]
+
+# Create a working directory for this workshop
+mkdir -p rnaseq_workshop
+cd rnaseq_workshop
+
+# Copy the workshop samplesheet and submission script
+cp /cluster/tufts/workshop/public/2026summer/rnaseq_motor_neuron/samplesheet.csv .
+cp /cluster/tufts/workshop/public/2026summer/rnaseq_motor_neuron/run_rnaseq.sh .
+
+# Confirm the files are here
+ls -lh</code></pre>
+
+    <p>The FASTQ files for this workshop are already downloaded and available at:</p>
+
+<pre><code class="language-plaintext">/cluster/tufts/workshop/public/2026summer/rnaseq_motor_neuron/fastq/</code></pre>
+
+    <p>You do not need to copy them — the samplesheet points to them directly.</p>
+
+    <hr>
+
+    <!-- ════════════════════════════════════════════════════════ -->
+    <h2 id="sec3"><span class="section-num">3</span> Unix Basics</h2>
+
+    <h3 id="sec3-1">3.1 &nbsp; Why Unix for bioinformatics?</h3>
+
+    <p>Most bioinformatics tools run on Linux/Unix systems. The HPC cluster runs Linux, and you interact with it through a command-line shell (typically Bash). You do not need to be a programmer — a small set of commands covers the vast majority of what you will do.</p>
+
+    <p>The shell follows a simple pattern:</p>
+
+<pre><code class="language-plaintext">command  [options]  [arguments]</code></pre>
+
+    <p>For example: <code>ls -lh /home/username</code> runs the <code>ls</code> command with the <code>-l</code> (long format) and <code>-h</code> (human-readable file sizes) options on the path <code>/home/username</code>.</p>
+
+    <h3 id="sec3-2">3.2 &nbsp; Navigation — where am I? what is here?</h3>
+
+    <table>
+      <thead><tr><th>Command</th><th>What it does</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><code>pwd</code></td><td>Print current directory</td><td><code>pwd</code></td></tr>
+        <tr><td><code>ls</code></td><td>List files in a directory</td><td><code>ls -lh</code></td></tr>
+        <tr><td><code>ls -a</code></td><td>List including hidden files</td><td><code>ls -a</code></td></tr>
+        <tr><td><code>cd</code></td><td>Change directory</td><td><code>cd rnaseq_workshop</code></td></tr>
+        <tr><td><code>cd ..</code></td><td>Go up one level</td><td><code>cd ..</code></td></tr>
+      </tbody>
+    </table>
+
+<pre><code class="language-bash"># Print your current location
+pwd
+
+# List files in the current directory (long format, human-readable sizes)
+ls -lh
+
+# List the workshop data directory
+ls -lh /cluster/tufts/workshop/public/2026summer/rnaseq_motor_neuron/
+
+# Move into a folder
+cd rnaseq_workshop
+
+# Go back up one level
+cd ..</code></pre>
+
+    <h3 id="sec3-3">3.3 &nbsp; Creating and organizing files</h3>
+
+    <table>
+      <thead><tr><th>Command</th><th>What it does</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><code>mkdir</code></td><td>Create a new directory</td><td><code>mkdir results</code></td></tr>
+        <tr><td><code>mkdir -p</code></td><td>Create nested directories</td><td><code>mkdir -p results/figures</code></td></tr>
+        <tr><td><code>cp</code></td><td>Copy a file or folder</td><td><code>cp file.txt backup.txt</code></td></tr>
+        <tr><td><code>mv</code></td><td>Move or rename a file</td><td><code>mv old.txt new.txt</code></td></tr>
+        <tr><td><code>rm</code></td><td>Delete a file (<strong>permanent — no trash</strong>)</td><td><code>rm file.txt</code></td></tr>
+      </tbody>
+    </table>
+
+<pre><code class="language-bash"># Create a results directory
+mkdir -p results
+
+# Copy a file
+cp run_rnaseq.sh run_rnaseq_backup.sh
+
+# Rename a file
+mv run_rnaseq_backup.sh run_rnaseq_v2.sh
+
+# Delete a file (CAREFUL — no undo on the HPC)
+rm run_rnaseq_v2.sh</code></pre>
+
+    <div class="callout warning">
+      <p><strong>Warning:</strong> <code>rm</code> deletes files permanently on the HPC. There is no Recycle Bin. Double-check before pressing Enter.</p>
+    </div>
+
+    <h3 id="sec3-4">3.4 &nbsp; Reading files</h3>
+
+    <table>
+      <thead><tr><th>Command</th><th>What it does</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><code>cat</code></td><td>Print the entire file to screen</td><td><code>cat samplesheet.csv</code></td></tr>
+        <tr><td><code>head</code></td><td>Print the first 10 lines</td><td><code>head counts.tsv</code></td></tr>
+        <tr><td><code>head -n 20</code></td><td>Print the first N lines</td><td><code>head -n 20 counts.tsv</code></td></tr>
+        <tr><td><code>tail</code></td><td>Print the last 10 lines</td><td><code>tail run.log</code></td></tr>
+        <tr><td><code>less</code></td><td>Scroll through a file (press <code>q</code> to quit)</td><td><code>less counts.tsv</code></td></tr>
+        <tr><td><code>wc -l</code></td><td>Count the number of lines</td><td><code>wc -l samplesheet.csv</code></td></tr>
+      </tbody>
+    </table>
+
+<pre><code class="language-bash"># Preview the samplesheet
+head samplesheet.csv
+
+# Count how many samples are in the samplesheet (subtract 1 for the header)
+wc -l samplesheet.csv
+
+# Scroll through a large file (q to quit, arrow keys to navigate)
+less salmon.merged.gene_counts.tsv</code></pre>
+
+    <h3 id="sec3-5">3.5 &nbsp; Editing files</h3>
+
+    <p>There are a few ways to edit text files on the HPC:</p>
+
+    <p><strong>Option 1 — nano (beginner-friendly terminal editor):</strong><br>
+    <a href="https://www.nano-editor.org/docs.php" target="_blank">Official nano documentation</a></p>
+
+<pre><code class="language-bash">nano run_rnaseq.sh
+
+# Key bindings:
+#   Ctrl + O   Save (Write Out)
+#   Ctrl + X   Exit
+#   Ctrl + W   Search</code></pre>
+
+    <p><strong>Option 2 — vi / vim (more powerful, steeper learning curve):</strong><br>
+    <a href="https://www.vim.org/docs.php" target="_blank">Official vim documentation</a> &nbsp;|&nbsp; <a href="https://vim.rtorr.com/" target="_blank">vim cheat sheet</a></p>
+
+<pre><code class="language-bash">vi run_rnaseq.sh
+
+# Basic vi commands:
+#   i          Enter insert mode (start typing)
+#   Esc        Exit insert mode
+#   :w         Save
+#   :q         Quit
+#   :wq        Save and quit
+#   :q!        Quit without saving</code></pre>
+
+    <p><strong>Option 3 — Edit locally, upload via OOD Files (easiest for beginners):</strong></p>
+    <ol>
+      <li>In the OOD file browser, navigate to your working directory</li>
+      <li>Click the file you want to edit → <strong>Edit</strong> to open it in the browser-based text editor</li>
+      <li>Or download the file, edit it on your laptop with any text editor, then re-upload it via <strong>Upload</strong></li>
+    </ol>
+
+    <div class="screenshot-placeholder">
+      <div class="icon">🖼</div>
+      <div class="label">Screenshot: OOD file browser with Edit button highlighted</div>
+    </div>
+
+    <h3 id="sec3-6">3.6 &nbsp; Paths: absolute vs. relative</h3>
+
+    <ul>
+      <li><strong>Absolute path</strong> — starts from the root <code>/</code>: &nbsp;<code>/cluster/tufts/workshop/public/2026summer/rnaseq_motor_neuron/</code></li>
+      <li><strong>Relative path</strong> — starts from where you currently are: &nbsp;<code>results/figures/</code></li>
+    </ul>
+
+    <p>Use <code>pwd</code> anytime you are unsure where you are.</p>
+
+    <h3 id="sec3-7">3.7 &nbsp; Exercises</h3>
+
+    <p>Try these in your terminal after navigating to your <code>rnaseq_workshop</code> directory:</p>
+
+    <ol>
+      <li>Print your current directory with <code>pwd</code> — confirm you are in your lab storage, not your home directory</li>
+      <li>List the files with <code>ls -lh</code> and confirm <code>samplesheet.csv</code> and <code>run_rnaseq.sh</code> are present</li>
+      <li>Preview the samplesheet: <code>head samplesheet.csv</code></li>
+      <li>Count the lines in the samplesheet: <code>wc -l samplesheet.csv</code></li>
+      <li>Create a results directory: <code>mkdir results</code></li>
+      <li>View <code>run_rnaseq.sh</code> using the OOD file browser — navigate to your working directory, click the file, and choose <strong>View</strong> or <strong>Edit</strong> to inspect the parameters</li>
+    </ol>
+
+    <hr>
+
+    <!-- ════════════════════════════════════════════════════════ -->
+    <h2 id="sec4"><span class="section-num">4</span> nf-core/rnaseq Pipeline</h2>
+
+    <h3 id="sec4-1">4.1 &nbsp; What is Nextflow and nf-core?</h3>
+
+    <p><strong>Nextflow</strong> is a workflow management system for running multi-step bioinformatics pipelines. Instead of running each tool (FastQC, STAR, Salmon, MultiQC, ...) manually and keeping track of outputs, Nextflow chains them together automatically, handles job submission to SLURM, and restarts from the last successful step if something fails.</p>
+
+    <p><strong>nf-core</strong> is a community that builds and maintains well-tested, standardized Nextflow pipelines. <code>nf-core/rnaseq</code> is one of the most widely used pipelines in the field — it handles the entire upstream workflow from FASTQ to count matrix.</p>
+
+    <p><strong>Key benefits:</strong></p>
+    <ul>
+      <li>Fully automated: submit one job and get the count matrix back</li>
+      <li>Reproducible: the exact version of every tool is recorded</li>
+      <li>Containerized: tools run inside containers so the software environment is standardized</li>
+      <li>Quality-controlled: MultiQC report summarizes QC for all samples in one page</li>
+    </ul>
+
+    <h3 id="sec4-2">4.2 &nbsp; What the pipeline does</h3>
+
+    <p><code>nf-core/rnaseq</code> runs these steps automatically:</p>
+
+    <table>
+      <thead><tr><th>Step</th><th>Tool</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Quality control</td>
+          <td><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/" target="_blank">FastQC</a></td>
+          <td>Checks read quality, adapter content, and duplication rate per sample</td>
+        </tr>
+        <tr>
+          <td>Adapter trimming</td>
+          <td><a href="https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/" target="_blank">Trim Galore</a></td>
+          <td>Removes adapter sequences and low-quality bases from read ends</td>
+        </tr>
+        <tr>
+          <td>Alignment</td>
+          <td><a href="https://github.com/alexdobin/STAR" target="_blank">STAR</a></td>
+          <td>Maps trimmed reads to the human reference genome (GRCh38)</td>
+        </tr>
+        <tr>
+          <td>Quantification</td>
+          <td><a href="https://combine-lab.github.io/salmon/" target="_blank">Salmon</a></td>
+          <td>Counts reads per gene using the STAR alignments</td>
+        </tr>
+        <tr>
+          <td>QC aggregation</td>
+          <td><a href="https://multiqc.info/" target="_blank">MultiQC</a></td>
+          <td>Summarizes all QC metrics across all samples into one interactive report</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>—</td>
+          <td><code>salmon.merged.gene_counts.tsv</code> — the count matrix for Part 2</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec4-3">4.3 &nbsp; The SLURM submission script</h3>
+
+    <p>SLURM is the job scheduler on the Tufts HPC. When you submit a job, SLURM queues it and allocates compute resources when they become available. You submit jobs with <code>sbatch</code>.</p>
+
+    <p>Open <code>run_rnaseq.sh</code> and examine its two parts:</p>
+
+    <p><strong>Part 1 — SLURM directives</strong> (lines starting with <code>#SBATCH</code>) tell SLURM how many resources to allocate to the <em>head job</em> (the Nextflow process itself, not the heavy compute steps):</p>
+
+<pre><code class="language-bash">#SBATCH --job-name=nfcore_rnaseq
+#SBATCH --partition=batch
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
+#SBATCH --time=48:00:00
+#SBATCH --output=nfcore_rnaseq_%j.out
+#SBATCH --error=nfcore_rnaseq_%j.err</code></pre>
+
+    <p>The log files (<code>nfcore_rnaseq_[jobid].out</code> and <code>.err</code>) will be written to your current working directory where you run <code>sbatch</code>.</p>
+
+    <div class="callout">
+      <p><strong>Important:</strong> The head job only runs Nextflow itself — it uses modest resources (4 CPUs, 16G RAM). Nextflow then automatically submits all the heavy steps (STAR alignment, Salmon quantification, etc.) as separate SLURM child jobs. The <code>--time=48:00:00</code> gives the pipeline up to 48 hours to complete all child jobs.</p>
+    </div>
+
+    <p><strong>Part 2 — The nextflow run command:</strong></p>
+
+<pre><code class="language-bash">nextflow run nf-core/rnaseq \
+    -revision 3.26.0 \
+    -profile tufts \
+    -resume \
+    --input          samplesheet.csv \
+    --outdir         rnaseq_output \
+    --genome         GRCh38 \
+    --aligner        star_salmon</code></pre>
+
+    <p>The two most important parameters to understand:</p>
+
+    <table>
+      <thead><tr><th>Parameter</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>--input samplesheet.csv</code></td>
+          <td>The samplesheet listing all your samples and FASTQ file paths. Each row is one sample. The pipeline reads this to know which files to process. Make sure this file is in your current working directory, or provide the full path.</td>
+        </tr>
+        <tr>
+          <td><code>--outdir rnaseq_output</code></td>
+          <td>The directory where all pipeline results will be saved — alignment files, count matrices, QC reports, and logs. <strong>Remember this path</strong>: everything you need after the run is here.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Other key parameters:</p>
+
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>-revision</code></td><td><code>3.26.0</code></td><td>Pins the exact pipeline version for reproducibility</td></tr>
+        <tr><td><code>-profile</code></td><td><code>tufts</code></td><td>Loads Tufts HPC–specific resource settings</td></tr>
+        <tr><td><code>-resume</code></td><td>—</td><td>If interrupted, restart from the last successful step (saves hours)</td></tr>
+        <tr><td><code>--genome</code></td><td><code>GRCh38</code></td><td>Use human reference genome (hg38)</td></tr>
+        <tr><td><code>--aligner</code></td><td><code>star_salmon</code></td><td>Align with STAR, quantify with Salmon</td></tr>
+        <tr><td><code>--skip_deseq2_qc</code></td><td><code>true</code></td><td>Skip built-in DESeq2 QC — we do this in Part 2</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="sec4-4">4.4 &nbsp; Submit the job</h3>
+
+    <p>Make sure you are in your working directory (where <code>samplesheet.csv</code> and <code>run_rnaseq.sh</code> live), then submit:</p>
+
+<pre><code class="language-bash"># Confirm you are in the right place
+pwd
+ls -lh
+
+# Submit the job to SLURM
+sbatch run_rnaseq.sh</code></pre>
+
+    <p>SLURM will print a job ID:</p>
+
+<pre><code class="language-plaintext">Submitted batch job 12345678</code></pre>
+
+    <p>Save this number — you will use it to monitor the job.</p>
+
+    <h3 id="sec4-5">4.5 &nbsp; Monitor the job</h3>
+
+<pre><code class="language-bash"># Check the status of your jobs
+squeue -u $USER
+
+# Follow the pipeline log in real time (replace 12345678 with your job ID)
+tail -f nfcore_rnaseq_12345678.out</code></pre>
+
+    <p>In the <code>squeue</code> output:</p>
+
+    <table>
+      <thead><tr><th>Column</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>JOBID</code></td><td>Your job's numeric ID</td></tr>
+        <tr><td><code>ST</code></td><td>Status: <code>R</code> = running, <code>PD</code> = pending (queued)</td></tr>
+        <tr><td><code>TIME</code></td><td>How long the job has been running</td></tr>
+        <tr><td><code>NODELIST</code></td><td>Which compute node(s) are allocated</td></tr>
+      </tbody>
+    </table>
+
+    <div class="screenshot-placeholder">
+      <div class="icon">🖼</div>
+      <div class="label">Screenshot: squeue output showing the Nextflow head job and child STAR/Salmon jobs</div>
+    </div>
+
+    <p>Nextflow prints a progress summary to the log file as each step completes. A successful run ends with:</p>
+
+<pre><code class="language-plaintext">-[nf-core/rnaseq] Pipeline completed successfully-</code></pre>
+
+    <div class="callout info">
+      <p>The full run for 9 samples typically takes <strong>1–2 hours</strong> depending on queue wait time.</p>
+    </div>
+
+    <h3 id="sec4-6">4.6 &nbsp; Understanding the output directory</h3>
+
+    <p>After the pipeline completes, navigate to your output directory to see what was produced. This is the <code>--outdir</code> you specified (<code>rnaseq_output</code> in this example):</p>
+
+<pre><code class="language-bash"># Navigate into the output directory
+cd rnaseq_output
+
+# See what the pipeline produced
+ls -lh</code></pre>
+
+    <p>The output directory structure looks like this:</p>
+
+<pre><code class="language-plaintext">rnaseq_output/
+├── fastqc/                   # Per-sample FastQC HTML reports
+├── trimgalore/               # Trimmed FASTQ files and trim reports
+├── star_salmon/
+│   ├── salmon.merged.gene_counts.tsv    ← THE COUNT MATRIX (Part 2 input)
+│   ├── salmon.merged.gene_tpm.tsv       ← TPM values (for reference)
+│   └── [sample_name]/                   # Per-sample Salmon output
+├── multiqc/
+│   └── multiqc_report.html   # Aggregated QC report for all 9 samples
+└── pipeline_info/            # Software versions and run parameters</code></pre>
+
+    <p>The key file you need for Part 2 is the count matrix:</p>
+
+<pre><code class="language-plaintext">rnaseq_output/star_salmon/salmon.merged.gene_counts.tsv</code></pre>
+
+    <p>Preview the first few lines to confirm it looks right:</p>
+
+<pre><code class="language-bash">head -n 5 star_salmon/salmon.merged.gene_counts.tsv</code></pre>
+
+    <p>You should see a tab-separated table with one row per gene and one column per sample:</p>
+
+    <!-- salmon.merged.gene_counts.tsv file preview -->
+    <div class="file-preview">
+      <div class="file-preview-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="filename">salmon.merged.gene_counts.tsv &nbsp;— first 5 rows</span>
+      </div>
+      <div class="file-preview-body">
+        <table>
+          <thead>
+            <tr>
+              <th>gene_id</th>
+              <th>gene_name</th>
+              <th>D0_REP1</th>
+              <th>D0_REP2</th>
+              <th>D0_REP3</th>
+              <th>D13_REP1</th>
+              <th>D13_REP2</th>
+              <th>D13_REP3</th>
+              <th>D28_REP1</th>
+              <th>D28_REP2</th>
+              <th>D28_REP3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="gene-id">ENSG00000000003.15</td>
+              <td class="gene-name">TSPAN6</td>
+              <td>234</td><td>189</td><td>267</td>
+              <td>198</td><td>221</td><td>176</td>
+              <td>156</td><td>143</td><td>168</td>
+            </tr>
+            <tr>
+              <td class="gene-id">ENSG00000000419.12</td>
+              <td class="gene-name">DPM1</td>
+              <td>891</td><td>934</td><td>878</td>
+              <td>756</td><td>823</td><td>811</td>
+              <td>892</td><td>867</td><td>901</td>
+            </tr>
+            <tr>
+              <td class="gene-id">ENSG00000000457.14</td>
+              <td class="gene-name">SCYL3</td>
+              <td>123</td><td>98</td><td>134</td>
+              <td>145</td><td>167</td><td>122</td>
+              <td>178</td><td>156</td><td>189</td>
+            </tr>
+            <tr>
+              <td class="gene-id">ENSG00000000460.17</td>
+              <td class="gene-name">C1orf112</td>
+              <td>45</td><td>67</td><td>52</td>
+              <td>89</td><td>78</td><td>94</td>
+              <td>112</td><td>98</td><td>124</td>
+            </tr>
+            <tr>
+              <td class="gene-id">ENSG00000001036.14</td>
+              <td class="gene-name">FUCA2</td>
+              <td>312</td><td>298</td><td>334</td>
+              <td>287</td><td>301</td><td>278</td>
+              <td>265</td><td>289</td><td>301</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="file-preview-ellipsis">· · ·</div>
+      </div>
+    </div>
+
+    <p>Each row is a gene (identified by Ensembl ID and gene symbol); each column is one of your 9 samples. The numbers are raw read counts — how many sequencing reads mapped to that gene in that sample. This file is the input to Part 2.</p>
+
+    <h3 id="sec4-7">4.7 &nbsp; Inspect the MultiQC report</h3>
+
+    <p>Before moving to Part 2, open the MultiQC report to confirm all 9 samples passed QC. Navigate to your output directory in the OOD file browser:</p>
+
+    <ol>
+      <li>In OOD, go to <strong>Files → Home Directory</strong></li>
+      <li>Navigate to your output directory (<code>rnaseq_output/multiqc/</code>)</li>
+      <li>Click <code>multiqc_report.html</code> → <strong>View</strong> to open it in the browser</li>
+    </ol>
+
+    <div class="screenshot-placeholder">
+      <div class="icon">🖼</div>
+      <div class="label">Screenshot: OOD file browser navigating to rnaseq_output/multiqc/</div>
+    </div>
+
+    <div class="screenshot-placeholder">
+      <div class="icon">🖼</div>
+      <div class="label">Screenshot: MultiQC report — General Statistics table showing all 9 samples</div>
+    </div>
+
+    <p>Key things to check in the MultiQC report:</p>
+
+    <table>
+      <thead><tr><th>Metric</th><th>What to look for</th></tr></thead>
+      <tbody>
+        <tr><td><strong>% Uniquely mapped reads</strong></td><td>Should be &gt;75% for a clean human sample</td></tr>
+        <tr><td><strong>Total reads</strong></td><td>All samples should have comparable library sizes</td></tr>
+        <tr><td><strong>% Duplicates</strong></td><td>Moderate duplication (&lt;50%) is expected for RNA-seq</td></tr>
+        <tr><td><strong>% Adapter content</strong></td><td>Should be near 0% after trimming</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <p>If any sample shows a very low mapping rate or dramatically lower read count, flag it before running Part 2. A bad sample in the count matrix will distort your downstream results.</p>
+    </div>
+
+    <h3 id="sec4-8">4.8 &nbsp; Putting it together</h3>
+
+    <p>The complete workflow you have just run:</p>
+
+    <div class="workflow-box">
+samplesheet.csv + FASTQ files<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+sbatch run_rnaseq.sh &nbsp;(nf-core/rnaseq 3.26.0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ &nbsp;FastQC → Trim Galore → STAR → Salmon → MultiQC<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+rnaseq_output/<br>
+&nbsp;&nbsp;&nbsp;├── star_salmon/<strong>salmon.merged.gene_counts.tsv</strong> &nbsp;← Part 2 input<br>
+&nbsp;&nbsp;&nbsp;└── multiqc/<strong>multiqc_report.html</strong> &nbsp;← check QC here
+    </div>
+
+    <div class="callout info">
+      <p><strong>Alternative: OOD nf-core/rnaseq app</strong><br>
+      You can also run this pipeline using the graphical nf-core/rnaseq app directly in OOD, without writing a SLURM script. See the <a href="https://github.com/TuftsHPCbioinfo/tufts_rnaseq_training/blob/main/README.md" target="_blank">Tufts HPC RNA-seq training README</a> for step-by-step instructions on using the OOD app interface.</p>
+    </div>
+
+    <p>The count matrix is in <code>rnaseq_output/star_salmon/salmon.merged.gene_counts.tsv</code>. Open the Part 2 tutorial (run in RStudio on OOD) to continue with the downstream analysis.</p>
+
+    <hr>
+
+    <div class="doc-footer">
+      <p>This tutorial was prepared for the Iyer Lab RNA-seq Training, Tufts University. Dataset: Solomon et al. 2021, BMC Molecular and Cell Biology, BioProject PRJNA638768. For questions, contact Shirley Li, Bioinformatician, Research Technology, Tufts University, <a href="mailto:xue.li37@tufts.edu">xue.li37@tufts.edu</a></p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+hljs.highlightAll();
+
+// Highlight active TOC link on scroll
+const sections = document.querySelectorAll('h2[id], h3[id]');
+const tocLinks = document.querySelectorAll('#toc-sidebar a');
+
+function updateTOC() {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    if (sectionTop <= 80) current = section.id;
+  });
+  tocLinks.forEach(link => {
+    const li = link.parentElement;
+    li.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) li.classList.add('active');
+  });
+}
+
+window.addEventListener('scroll', updateTOC);
+updateTOC();
+</script>
+
+</body>
+</html>
